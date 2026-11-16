@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Nick (RennexTech) | Python, Django & low-level hacking</title>
 <meta name="description" content="Nick, a self-taught developer from Nairobi. Python and Django by day, WinAPI, C and assembly reverse engineering for fun.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -18,15 +18,17 @@ body{font-family:'Lilex','Fira Code','JetBrains Mono',Consolas,monospace;backgro
 #gl{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.5}
 main,nav,footer{position:relative;z-index:1}
 a{color:inherit}
+button{font:inherit;touch-action:manipulation}
 .k{color:var(--k)}.s{color:var(--s)}.f{color:var(--f)}.n{color:var(--n)}.c{color:var(--c)}.o{color:var(--o)}.d{color:var(--dim)}
 nav{position:sticky;top:0;z-index:50;display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap;padding:.7rem 1.5rem;background:color-mix(in srgb,var(--bar) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
 nav .logo{font-weight:700}
 nav .links{display:flex;gap:1.2rem;flex-wrap:wrap}
 nav a{text-decoration:none;color:var(--dim);transition:color .2s}
 nav a:hover{color:var(--f)}
-.themes{display:flex;gap:.4rem}
-.themes button{width:18px;height:18px;border-radius:50%;border:2px solid var(--line);cursor:pointer}
+.themes{display:flex;gap:.4rem;align-items:center}
+.themes button{width:18px;height:18px;border-radius:50%;border:2px solid var(--line);cursor:pointer;transition:transform .2s}
 .themes button:hover{transform:scale(1.25)}
+.theme-label{font-size:.68rem;color:var(--dim)}
 section{max-width:1050px;margin:0 auto;padding:4.5rem 1.5rem}
 h2.t{font-size:.9rem;color:var(--dim);font-weight:400;margin-bottom:1.2rem}
 .win{background:var(--win);border:1px solid var(--line);border-radius:12px;box-shadow:0 20px 50px rgba(0,0,0,.35);overflow:hidden;transition:transform .15s ease-out,box-shadow .3s;will-change:transform}
@@ -38,53 +40,139 @@ h2.t{font-size:.9rem;color:var(--dim);font-weight:400;margin-bottom:1.2rem}
 .code{padding:1.1rem 0;counter-reset:l;overflow-x:auto}
 .code div{padding:0 1.2rem 0 0;white-space:pre-wrap;word-break:break-word;counter-increment:l}
 .code div::before{content:counter(l);display:inline-block;width:3.2rem;padding-right:1rem;text-align:right;color:var(--dim);opacity:.6;user-select:none}
-.hero{min-height:88vh;display:flex;flex-direction:column;justify-content:center}
+.hero{min-height:88vh;min-height:88svh;display:flex;flex-direction:column;justify-content:center}
 .hero h1{font-size:clamp(2.2rem,7vw,4.6rem);line-height:1.1;margin-bottom:1rem}
 .hero h1 span{color:var(--f)}
 .sub{max-width:620px;color:var(--dim);margin-bottom:1.6rem;font-size:1rem}
-.btns{display:flex;gap:.8rem;flex-wrap:wrap;margin-bottom:2rem}
-.btn{padding:.65rem 1.2rem;border:1px solid var(--line);border-radius:8px;text-decoration:none;background:var(--win);transition:all .2s;font-size:.85rem}
+.btns{display:flex;gap:.8rem;flex-wrap:wrap;margin-bottom:1.2rem}
+.btn{padding:.65rem 1.2rem;border:1px solid var(--line);border-radius:8px;text-decoration:none;background:var(--win);transition:border-color .2s,color .2s,transform .2s,background .2s;font-size:.85rem;cursor:pointer;color:inherit;display:inline-block}
 .btn:hover{border-color:var(--f);color:var(--f);transform:translateY(-3px)}
 .btn.p{background:var(--f);color:var(--bg);border-color:var(--f);font-weight:700}
 .btn.p:hover{color:var(--bg);filter:brightness(1.15)}
+.btn.chaos{border-color:var(--k);color:var(--k)}
+.btn.chaos:hover{background:var(--k);color:var(--bg)}
 .cur{display:inline-block;width:.6ch;background:var(--f);animation:bl 1s steps(1) infinite}
 @keyframes bl{50%{opacity:0}}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.4rem}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.4rem}
 .card{padding:1.3rem}
 .card h3{margin-bottom:.5rem;font-size:1rem}
 .card p{color:var(--dim);font-size:.85rem;margin-bottom:.8rem}
 .tag{display:inline-block;font-size:.7rem;padding:.1rem .6rem;border:1px solid var(--line);border-radius:99px;margin:0 .3rem .3rem 0;color:var(--c)}
-.meter{font-size:.8rem;color:var(--dim);display:flex;justify-content:space-between;gap:1rem}
-.meter b{color:var(--f);letter-spacing:-.1em;font-weight:400}
 a.repo{display:block;text-decoration:none;padding:1rem 1.2rem}
 a.repo:hover h3{color:var(--f)}
-.term{height:330px;overflow-y:auto;padding:1rem;font-size:.85rem;cursor:text}
+.term{height:330px;overflow-y:auto;padding:1rem;font-size:.85rem;cursor:text;-webkit-overflow-scrolling:touch}
 .term p{white-space:pre-wrap;word-break:break-word}
 .term .row{display:flex;gap:.6rem}
-.term input{flex:1;background:none;border:none;outline:none;color:var(--fg);font:inherit}
-.arena{position:relative;height:260px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:.6rem;text-align:center;padding:1rem}
-#dodge{position:absolute;left:50%;top:60%;transform:translate(-50%,-50%);transition:left .18s,top .18s;z-index:2}
+.term input{flex:1;background:none;border:none;outline:none;color:var(--fg);font:inherit;min-width:0}
+.arena{position:relative;height:270px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:.6rem;text-align:center;padding:1rem}
+#dodge{position:absolute;left:50%;top:62%;transform:translate(-50%,-50%);transition:left .18s cubic-bezier(.34,1.56,.64,1),top .18s cubic-bezier(.34,1.56,.64,1);z-index:2}
 footer{text-align:center;padding:2.5rem 1rem;color:var(--dim);font-size:.75rem}
 .rv{opacity:0;transform:translateY(30px);transition:opacity .7s,transform .7s}
 .rv.in{opacity:1;transform:none}
 .p-bit{position:fixed;pointer-events:none;z-index:999;font-weight:700;transition:transform .8s cubic-bezier(.2,.8,.3,1),opacity .8s}
 #rain{position:fixed;inset:0;z-index:998;pointer-events:none;display:none}
-@media(max-width:600px){nav .links{gap:.7rem;font-size:.8rem}.code div::before{width:2rem}}
+.discovery{display:flex;gap:.6rem;flex-wrap:wrap;margin:0 0 1.6rem}
+.discovery .btn{font-size:.78rem}
+.hero-note{display:flex;align-items:center;gap:.6rem;flex-wrap:wrap;color:var(--dim);font-size:.75rem;margin:.2rem 0 1rem}
+.pulse{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--f);box-shadow:0 0 12px var(--f);animation:bl 1.2s infinite}
+.next-hook{display:flex;align-items:center;justify-content:space-between;gap:1rem;margin-top:1.5rem;padding:1rem 1.2rem;border:1px dashed var(--line);border-radius:10px;background:color-mix(in srgb,var(--win) 72%,transparent)}
+.next-hook p{color:var(--dim);font-size:.8rem}
+.next-hook a{white-space:nowrap;color:var(--f);text-decoration:none;font-size:.8rem}
+.next-hook a:hover{text-decoration:underline}
+.terminal-tools{display:flex;gap:.5rem;flex-wrap:wrap;padding:0 1rem 1rem}
+.terminal-tools button{font-size:.72rem;padding:.45rem .75rem;border:1px solid var(--line);border-radius:6px;background:var(--bar);color:var(--c);cursor:pointer}
+.terminal-tools button:hover{border-color:var(--f);color:var(--f)}
+
+/* ---------- floating dock ---------- */
+.quick-dock{position:fixed;right:1rem;bottom:1rem;z-index:80;display:flex;gap:.4rem;flex-wrap:wrap;justify-content:flex-end;max-width:calc(100vw - 2rem)}
+.quick-dock button{font-size:.72rem;padding:.55rem .8rem;border:1px solid var(--line);border-radius:999px;background:color-mix(in srgb,var(--bar) 92%,transparent);color:var(--fg);cursor:pointer;box-shadow:0 8px 25px #0005;backdrop-filter:blur(10px);transition:transform .2s,border-color .2s,color .2s}
+.quick-dock button:hover{border-color:var(--f);color:var(--f);transform:translateY(-2px)}
+#eggBtn{border-color:var(--o);color:var(--o)}
+
+/* ---------- ninja cat ---------- */
+#cat{position:fixed;left:82vw;top:72vh;z-index:90;font-size:26px;line-height:1;cursor:pointer;user-select:none;-webkit-user-select:none;-webkit-tap-highlight-color:transparent;transition:left .55s cubic-bezier(.34,1.56,.64,1),top .55s cubic-bezier(.34,1.56,.64,1),transform .25s,opacity .3s;filter:drop-shadow(0 4px 10px #0009);animation:catFloat 3s ease-in-out infinite}
+#cat:hover{transform:scale(1.35) rotate(-10deg)}
+#cat.poof{transform:scale(0) rotate(200deg);opacity:0}
+@keyframes catFloat{0%,100%{translate:0 0}50%{translate:0 -7px}}
+
+/* ---------- toast ---------- */
+.toast{position:fixed;left:50%;bottom:4.6rem;transform:translate(-50%,20px);opacity:0;pointer-events:none;z-index:1001;background:var(--bar);border:1px solid var(--f);border-radius:9px;padding:.65rem 1rem;color:var(--fg);font-size:.8rem;box-shadow:0 10px 35px #0008;transition:.25s;max-width:min(92vw,520px);text-align:center}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+
+/* ---------- secrets panel ---------- */
+.panel{position:fixed;inset:0;z-index:1002;display:none;align-items:center;justify-content:center;padding:1rem;background:rgba(0,0,0,.6);backdrop-filter:blur(4px)}
+.panel.open{display:flex}
+.panel-box{width:min(520px,100%);max-height:80vh;overflow:auto;background:var(--win);border:1px solid var(--line);border-radius:12px;box-shadow:0 30px 80px #000a}
+.panel-head{display:flex;justify-content:space-between;align-items:center;gap:1rem;padding:.7rem 1rem;border-bottom:1px solid var(--line);background:var(--bar);font-size:.8rem}
+.panel-head button{background:none;border:none;color:var(--dim);cursor:pointer;font-size:1rem}
+.panel-head button:hover{color:var(--k)}
+#eggList{list-style:none;padding:.6rem}
+#eggList li{display:flex;gap:.7rem;align-items:flex-start;padding:.6rem .5rem;border-bottom:1px dashed var(--line);font-size:.8rem}
+#eggList li:last-child{border-bottom:none}
+#eggList .mark{color:var(--dim);font-weight:700;width:1rem;flex:0 0 1rem;text-align:center}
+#eggList li.got .mark{color:var(--f)}
+#eggList b{display:block;font-weight:500}
+#eggList li.got b{color:var(--f)}
+#eggList small{color:var(--dim);font-size:.72rem}
+.panel-foot{padding:.2rem 1rem 1rem;font-size:.72rem}
+
+/* ---------- chaos mode ---------- */
+body.chaos{--f:#ff79c6}
+@media(pointer:coarse){
+  body.chaos .btn{animation:chaosWiggle .3s infinite alternate}
+}
+@keyframes chaosWiggle{from{transform:rotate(-2.5deg) translateY(-2px)}to{transform:rotate(2.5deg) translateY(2px)}}
+
+@media(max-width:600px){
+  nav{padding:.6rem .9rem}
+  nav .links{gap:.65rem;font-size:.78rem}
+  .code div::before{width:2rem}
+  section{padding:3rem 1.1rem}
+  .term{height:250px}
+  .term input{font-size:16px}
+  .arena{height:300px}
+  .quick-dock{left:.5rem;right:.5rem;bottom:.5rem;justify-content:center;gap:.3rem;max-width:none}
+  .quick-dock button{font-size:.7rem;padding:.45rem .6rem}
+  .quick-dock button span:not(.keep){display:none}
+  .next-hook{flex-direction:column;align-items:flex-start}
+  footer{padding-bottom:6rem}
+  .toast{bottom:4.2rem}
+}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
 </head>
 <body>
 <canvas id="gl"></canvas>
 <canvas id="rain"></canvas>
+<div id="cat" title="meow?">🐱‍👤</div>
+
+<div class="quick-dock" id="dock" aria-label="Quick actions">
+  <button type="button" id="dockMatrix" title="Matrix rain">☢ <span>matrix</span></button>
+  <button type="button" id="dockChaos" title="Chaos mode">🎲 <span>chaos</span></button>
+  <button type="button" id="dockTerm" title="Jump to terminal">⌨ <span>terminal</span></button>
+  <button type="button" id="eggBtn" title="Secrets found">🏆 <span class="keep" id="eggCount">0/6</span></button>
+  <button type="button" id="dockTop" title="Back to top">⬆</button>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<div class="panel" id="panel" aria-hidden="true">
+  <div class="panel-box" role="dialog" aria-label="Secrets">
+    <div class="panel-head"><span class="f">// easter_eggs.log</span><button type="button" id="panelClose" aria-label="Close">✕</button></div>
+    <ul id="eggList"></ul>
+    <p class="panel-foot d">Found ones are ticked. The rest are just… sitting there. Hover, tap, type, chase. It's all allowed.</p>
+  </div>
+</div>
 
 <nav>
   <span class="logo"><span class="f">~/</span>rennextech</span>
   <div class="links"><a href="#about">about.py</a><a href="#stack">stack</a><a href="#work">projects</a><a href="#play">terminal</a><a href="#contact">contact</a></div>
   <div class="themes" title="Switch theme">
-    <button style="background:#bd93f9" data-th="dracula"></button>
-    <button style="background:#f92672" data-th="monokai"></button>
-    <button style="background:#7aa2f7" data-th="tokyo"></button>
-    <button style="background:#e9ebf0" data-th="light"></button>
+    <span class="theme-label">THEME:</span>
+    <button aria-label="Dracula theme" title="Dracula" style="background:#bd93f9" data-th="dracula"></button>
+    <button aria-label="Monokai theme" title="Monokai" style="background:#f92672" data-th="monokai"></button>
+    <button aria-label="Tokyo Night theme" title="Tokyo Night" style="background:#7aa2f7" data-th="tokyo"></button>
+    <button aria-label="Light theme" title="Light" style="background:#e9ebf0" data-th="light"></button>
   </div>
 </nav>
 
@@ -92,6 +180,7 @@ footer{text-align:center;padding:2.5rem 1rem;color:var(--dim);font-size:.75rem}
 <section class="hero">
   <h1>Hey, I'm <span>Nick</span>.<br>I build things in Python<br>and break things in assembly.</h1>
   <p class="sub">Self-taught dev from Nairobi. Django and Python are my daily drivers. WinAPI, C and x64 assembly are my part-time reverse engineering rabbit hole. I'm looking for a support / engineering role where I can fix real problems.</p>
+  <div class="hero-note"><span class="pulse"></span> workstation online <span class="d">·</span> curiosity levels: legally concerning</div>
   <div class="btns">
     <a class="btn p" href="#contact">Say hi</a>
     <a class="btn" href="https://github.com/RennexTech" target="_blank" rel="noopener">GitHub</a>
@@ -99,6 +188,12 @@ footer{text-align:center;padding:2.5rem 1rem;color:var(--dim);font-size:.75rem}
     <a class="btn" href="https://sites.google.com/view/rennextech/home" target="_blank" rel="noopener">Library</a>
     <a class="btn" href="https://www.linkedin.com/in/nixon-ekirapa-7685542b8/" target="_blank" rel="noopener">LinkedIn</a>
     <a class="btn" href="https://data.typeracer.com/pit/profile?user=nixoneen" target="_blank" rel="noopener">TypeRacer</a>
+  </div>
+  <div class="discovery">
+    <button class="btn chaos" id="matrixBtn" type="button">☢ Initiate Matrix</button>
+    <a class="btn" href="#play">⌨ Open the terminal</a>
+    <button class="btn" id="surpriseBtn" type="button">🎲 Roll for nonsense</button>
+    <button class="btn" id="secretsBtn" type="button">🏆 What's hidden here?</button>
   </div>
   <div class="win" data-tilt style="max-width:640px">
     <div class="bar"><i class="dot"></i><i class="dot"></i><i class="dot"></i><span class="name">nick.py</span></div>
@@ -124,6 +219,7 @@ footer{text-align:center;padding:2.5rem 1rem;color:var(--dim);font-size:.75rem}
 <div>        <span class="k">return</span> <span class="s">"Don't just use the tool. Open it up and see how it works."</span></div>
     </div>
   </div>
+  <div class="next-hook"><p><span class="k">NEXT:</span> Okay, that's the human. Now let's inspect the tools this human keeps installing.</p><a href="#stack">Inspect the toolkit →</a></div>
 </section>
 
 <section id="stack" class="rv">
@@ -145,6 +241,7 @@ footer{text-align:center;padding:2.5rem 1rem;color:var(--dim);font-size:.75rem}
       <span class="tag">Ollama</span><span class="tag">Local LLMs</span><span class="tag">TTS</span><span class="tag">Prompting</span>
     </div>
   </div>
+  <div class="next-hook"><p><span class="k">NEXT:</span> Tools are cool. Things built with them are where the questionable decisions become visible.</p><a href="#work">Open the project files →</a></div>
 </section>
 
 <section id="work" class="rv">
@@ -159,17 +256,27 @@ footer{text-align:center;padding:2.5rem 1rem;color:var(--dim);font-size:.75rem}
     <a class="win card repo" data-tilt href="https://github.com/RennexTech/C-Code" target="_blank" rel="noopener"><h3>📁 C-Code</h3><p>Pointers, memory management and code close to the metal.</p><span class="tag">C</span></a>
     <a class="win card repo" data-tilt href="https://sites.google.com/view/rennextech/home" target="_blank" rel="noopener"><h3>📚 RennexTech Library</h3><p>My long-form research notes on networking, OS internals and RE. All free.</p><span class="tag">Research</span></a>
   </div>
+  <div class="next-hook"><p><span class="k">NEXT:</span> The repositories are the public evidence. The terminal is where the workstation starts talking back.</p><a href="#play">Enter the terminal →</a></div>
 </section>
 
 <section id="play" class="rv">
-  <h2 class="t"># terminal (type <span class="f">help</span>)</h2>
+  <h2 class="t"># terminal (type <span class="f">help</span> — or just tap a button)</h2>
   <div class="win" data-tilt>
     <div class="bar"><i class="dot"></i><i class="dot"></i><i class="dot"></i><span class="name">nick@rennextech:~$</span></div>
     <div class="term" id="term">
       <div id="out"></div>
-      <div class="row"><span class="f">$</span><input id="in" autocomplete="off" spellcheck="false" aria-label="terminal input"></div>
+      <div class="row"><span class="f">$</span><input id="in" autocomplete="off" spellcheck="false" aria-label="terminal input" placeholder="try help... or tap a command below"></div>
+    </div>
+    <div class="terminal-tools" aria-label="Try a terminal command">
+      <button type="button" data-cmd="help">help</button>
+      <button type="button" data-cmd="whoami">whoami</button>
+      <button type="button" data-cmd="skills">skills</button>
+      <button type="button" data-cmd="projects">projects</button>
+      <button type="button" data-cmd="matrix">matrix ☢</button>
+      <button type="button" data-cmd="sudo hire nick">sudo hire nick</button>
     </div>
   </div>
+  <div class="next-hook"><p><span class="k">NEXT:</span> You have successfully accessed the workstation. Please do not feed it after midnight. There is one final mission.</p><a href="#contact">Attempt contact →</a></div>
 </section>
 
 <section id="contact" class="rv">
@@ -178,32 +285,86 @@ footer{text-align:center;padding:2.5rem 1rem;color:var(--dim);font-size:.75rem}
     <div class="bar"><i class="dot"></i><i class="dot"></i><i class="dot"></i><span class="name">hire_me.py</span></div>
     <div class="arena" id="arena">
       <h3 style="font-size:1.3rem">Want to work together?</h3>
-      <p class="d" id="hint">Backend work, automation, or a support engineer role. Try clicking the button.</p>
+      <p class="d" id="hint">Backend work, automation, or a support engineer role. The email button has commitment issues. Catch it anyway.</p>
       <a class="btn p" id="dodge" href="mailto:rennextech@gmail.com">Email me</a>
     </div>
   </div>
 </section>
 </main>
 
-<footer>© 2026 RennexTech · Nick · Nairobi · try the Konami code ↑↑↓↓←→←→ B A</footer>
+<footer>© 2026 RennexTech · Nick · Nairobi · Matrix mode is above-board now. Konami code still works: ↑↑↓↓←→←→ B A · the cat is real</footer>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script>
 (function(){
+'use strict';
 const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
 const css=n=>getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+const coarse=()=>window.matchMedia('(pointer:coarse)').matches;
+const small=()=>window.innerWidth<700;
 
-/* ---------- themes ---------- */
+/* ================= toast queue ================= */
+const toastEl=$('#toast');let tq=[],tBusy=false;
+function toast(msg,ms){tq.push([msg,ms||2500]);if(!tBusy)nextToast()}
+function nextToast(){
+  if(!tq.length){tBusy=false;return}
+  tBusy=true;const item=tq.shift();
+  toastEl.textContent=item[0];toastEl.classList.add('show');
+  setTimeout(()=>{toastEl.classList.remove('show');setTimeout(nextToast,320)},item[1]);
+}
+
+/* ================= achievements ================= */
+const ACH={
+  matrix:{t:'Matrix mode',h:'Big ☢ button. Also the word "matrix" in the terminal.'},
+  cat:{t:'Caught the ninja cat 🐱‍👤',h:'Something tiny is drifting around the page. Tap it.'},
+  konami:{t:'Konami code',h:'↑↑↓↓←→←→ B A — anywhere on the page.'},
+  chaos:{t:'Survived chaos mode',h:'Press 🎲 in the corner dock and wait it out.'},
+  hire:{t:'Caught the email button',h:'Chase "Email me" at the bottom. It gives up eventually.'},
+  sudo:{t:'sudo hire nick',h:'Tap that exact chip under the terminal.'}
+};
+const KEYS=Object.keys(ACH);
+let found=new Set();
+try{found=new Set(JSON.parse(localStorage.getItem('rnx_eggs')||'[]'))}catch(e){}
+const saveEggs=()=>{try{localStorage.setItem('rnx_eggs',JSON.stringify([...found]))}catch(e){}};
+function updateEggBtn(){const n=$('#eggCount');if(n)n.textContent=found.size+'/'+KEYS.length}
+function award(id){
+  if(!ACH[id]||found.has(id))return;
+  found.add(id);saveEggs();updateEggBtn();
+  toast('🏆 '+ACH[id].t+'  ('+found.size+'/'+KEYS.length+')');
+  if(found.size===KEYS.length)setTimeout(()=>toast('🎉 You found everything. Nick is now legally required to reply to your email.'),2800);
+}
+updateEggBtn();
+
+const panel=$('#panel');
+function buildPanel(){
+  const ul=$('#eggList');ul.innerHTML='';
+  KEYS.forEach(k=>{
+    const got=found.has(k);
+    const li=document.createElement('li');
+    if(got)li.className='got';
+    li.innerHTML='<span class="mark">'+(got?'✔':'✘')+'</span><div><b>'+ACH[k].t+'</b><small>'+(got?'found it':ACH[k].h)+'</small></div>';
+    ul.appendChild(li);
+  });
+}
+function openPanel(){buildPanel();panel.classList.add('open');panel.setAttribute('aria-hidden','false')}
+function closePanel(){panel.classList.remove('open');panel.setAttribute('aria-hidden','true')}
+$('#eggBtn').addEventListener('click',openPanel);
+$('#secretsBtn').addEventListener('click',openPanel);
+$('#panelClose').addEventListener('click',closePanel);
+panel.addEventListener('click',e=>{if(e.target===panel)closePanel()});
+addEventListener('keydown',e=>{if(e.key==='Escape')closePanel()});
+
+/* ================= themes ================= */
 function setTheme(t){
   const v=t==='dracula'?'':t;
   document.documentElement.setAttribute('data-t',v);
   try{localStorage.setItem('theme',t)}catch(e){}
   if(window.recolor)window.recolor();
 }
-$$('[data-th]').forEach(b=>b.onclick=()=>setTheme(b.dataset.th));
+$$('[data-th]').forEach(b=>b.addEventListener('click',()=>setTheme(b.dataset.th)));
 try{const t=localStorage.getItem('theme');if(t)setTheme(t)}catch(e){}
 
-/* ---------- typed hero code ---------- */
+/* ================= typed hero code ================= */
 const lines=[
  '<span class="k">from</span> life <span class="k">import</span> coffee, curiosity',
  '',
@@ -219,116 +380,279 @@ let li=0;
   const d=document.createElement('div');d.innerHTML=lines[li++]||'&nbsp;';hc.appendChild(d);setTimeout(addLine,350);
 })();
 
-/* ---------- scroll reveal ---------- */
-const io=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('in')}}),{threshold:.12});
+/* ================= scroll reveal ================= */
+const io=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('in')}),{threshold:.12});
 $$('.rv').forEach(el=>io.observe(el));
 
-/* ---------- 3D tilt on windows ---------- */
+/* ================= 3D tilt (mouse only) ================= */
 $$('[data-tilt]').forEach(el=>{
   el.addEventListener('mousemove',e=>{
+    if(coarse())return;
     const r=el.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;
-    el.style.transform=`perspective(900px) rotateY(${x*6}deg) rotateX(${-y*6}deg) translateY(-3px)`;
+    el.style.transform='perspective(900px) rotateY('+(x*6)+'deg) rotateX('+(-y*6)+'deg) translateY(-3px)';
   });
   el.addEventListener('mouseleave',()=>el.style.transform='');
 });
 
-/* ---------- three.js background ---------- */
+/* ================= three.js background ================= */
 let mx=0,my=0;
 addEventListener('mousemove',e=>{mx=e.clientX/innerWidth-.5;my=e.clientY/innerHeight-.5});
 if(window.THREE){
-  const cv=$('#gl'),R=new THREE.WebGLRenderer({canvas:cv,alpha:true,antialias:true});
-  const sc=new THREE.Scene(),cam=new THREE.PerspectiveCamera(60,1,.1,100);cam.position.z=7;
-  const mat=new THREE.MeshBasicMaterial({wireframe:true,color:0x50fa7b});
-  const knot=new THREE.Mesh(new THREE.TorusKnotGeometry(1.8,.5,120,16),mat);knot.position.x=3;
-  const ico=new THREE.Mesh(new THREE.IcosahedronGeometry(1,1),new THREE.MeshBasicMaterial({wireframe:true,color:0xbd93f9}));ico.position.set(-4,-2,-2);
-  const pg=new THREE.BufferGeometry(),N=500,pa=new Float32Array(N*3);
-  for(let i=0;i<N*3;i++)pa[i]=(Math.random()-.5)*30;
-  pg.setAttribute('position',new THREE.BufferAttribute(pa,3));
-  const pm=new THREE.PointsMaterial({size:.05,color:0x8be9fd});const pts=new THREE.Points(pg,pm);
-  sc.add(knot,ico,pts);
-  window.recolor=()=>{mat.color.set(css('--f'));ico.material.color.set(css('--n'));pm.color.set(css('--c'))};
-  window.recolor();
-  function rs(){R.setSize(innerWidth,innerHeight);R.setPixelRatio(Math.min(devicePixelRatio,2));cam.aspect=innerWidth/innerHeight;cam.updateProjectionMatrix()}
-  addEventListener('resize',rs);rs();
-  (function loop(){
-    knot.rotation.x+=.004;knot.rotation.y+=.006;ico.rotation.x-=.005;ico.rotation.y+=.004;
-    pts.rotation.y+=.0008;
-    const sy=scrollY/innerHeight;knot.position.y=sy*1.5;ico.position.y=-2+sy;
-    cam.position.x+=(mx*2-cam.position.x)*.05;cam.position.y+=(-my*2-cam.position.y)*.05;cam.lookAt(0,0,0);
-    R.render(sc,cam);requestAnimationFrame(loop);
-  })();
+  try{
+    const cv=$('#gl');
+    const R=new THREE.WebGLRenderer({canvas:cv,alpha:true,antialias:!small()});
+    const sc=new THREE.Scene(),cam=new THREE.PerspectiveCamera(60,1,.1,100);cam.position.z=7;
+    const mat=new THREE.MeshBasicMaterial({wireframe:true,color:0x50fa7b});
+    const knot=new THREE.Mesh(new THREE.TorusKnotGeometry(1.8,.5,small()?70:120,small()?10:16),mat);knot.position.x=3;
+    const ico=new THREE.Mesh(new THREE.IcosahedronGeometry(1,1),new THREE.MeshBasicMaterial({wireframe:true,color:0xbd93f9}));ico.position.set(-4,-2,-2);
+    const pg=new THREE.BufferGeometry(),N=small()?180:500,pa=new Float32Array(N*3);
+    for(let i=0;i<N*3;i++)pa[i]=(Math.random()-.5)*30;
+    pg.setAttribute('position',new THREE.BufferAttribute(pa,3));
+    const pm=new THREE.PointsMaterial({size:.05,color:0x8be9fd});const pts=new THREE.Points(pg,pm);
+    sc.add(knot,ico,pts);
+    window.recolor=()=>{mat.color.set(css('--f'));ico.material.color.set(css('--n'));pm.color.set(css('--c'))};
+    window.recolor();
+    function rs(){
+      R.setSize(innerWidth,innerHeight);
+      R.setPixelRatio(Math.min(devicePixelRatio,small()?1.5:2));
+      cam.aspect=innerWidth/innerHeight;cam.updateProjectionMatrix();
+    }
+    addEventListener('resize',rs);rs();
+    (function loop(){
+      knot.rotation.x+=.004;knot.rotation.y+=.006;ico.rotation.x-=.005;ico.rotation.y+=.004;
+      pts.rotation.y+=.0008;
+      const sy=scrollY/innerHeight;knot.position.y=sy*1.5;ico.position.y=-2+sy;
+      cam.position.x+=(mx*2-cam.position.x)*.05;cam.position.y+=(-my*2-cam.position.y)*.05;cam.lookAt(0,0,0);
+      R.render(sc,cam);requestAnimationFrame(loop);
+    })();
+  }catch(e){/* webgl unavailable — page still works */}
 }
 
-/* ---------- click burst ---------- */
+/* ================= click burst ================= */
 const bits=['{ }','def','0x90','mov','&lt;/&gt;','int','jmp','()','#!','rax'];
 addEventListener('click',e=>{
-  for(let i=0;i<8;i++){
+  if(e.target.tagName==='INPUT')return;
+  const n=coarse()?5:8;
+  for(let i=0;i<n;i++){
     const p=document.createElement('span');p.className='p-bit';p.innerHTML=bits[Math.random()*bits.length|0];
-    p.style.cssText+=`left:${e.clientX}px;top:${e.clientY}px;color:var(${['--k','--f','--n','--c','--o'][i%5]});font-size:${11+Math.random()*8}px`;
+    p.style.cssText+='left:'+e.clientX+'px;top:'+e.clientY+'px;color:var('+['--k','--f','--n','--c','--o'][i%5]+');font-size:'+(11+Math.random()*8)+'px';
     document.body.appendChild(p);
-    requestAnimationFrame(()=>{const a=Math.random()*6.28,d=40+Math.random()*80;p.style.transform=`translate(${Math.cos(a)*d}px,${Math.sin(a)*d}px) rotate(${Math.random()*180}deg)`;p.style.opacity=0});
+    requestAnimationFrame(()=>{
+      const a=Math.random()*6.28,d=40+Math.random()*80;
+      p.style.transform='translate('+(Math.cos(a)*d)+'px,'+(Math.sin(a)*d)+'px) rotate('+(Math.random()*180)+'deg)';
+      p.style.opacity=0;
+    });
     setTimeout(()=>p.remove(),900);
   }
 });
 
-/* ---------- the button that runs away ---------- */
-const dodge=$('#dodge'),arena=$('#arena'),hint=$('#hint');let esc=0,caught=false;
+/* ================= THE EMAIL BUTTON THAT RUNS ================= */
+const dodge=$('#dodge'),arena=$('#arena'),hint=$('#hint');
+let esc=0,caught=false,lastFlee=0;
 const msgs=['Nope!','Too slow 😎','Almost!','Try again','Okay, okay...'];
-function flee(e){
-  if(caught||matchMedia('(pointer:coarse)').matches)return;
-  const b=dodge.getBoundingClientRect(),dx=e.clientX-(b.left+b.width/2),dy=e.clientY-(b.top+b.height/2);
-  if(Math.hypot(dx,dy)<110){
-    const a=arena.getBoundingClientRect();
-    dodge.style.left=(15+Math.random()*70)+'%';dodge.style.top=(35+Math.random()*50)+'%';
-    esc++;dodge.textContent=msgs[Math.min(esc-1,msgs.length-1)];
-    if(esc>=6){caught=true;dodge.textContent='Fine, you win. Email me 📧';hint.textContent='Persistence noted. That is a good trait in an engineer.';dodge.style.left='50%';dodge.style.top='65%'}
+function flee(px,py,force){
+  if(caught)return;
+  const b=dodge.getBoundingClientRect();
+  const dx=px-(b.left+b.width/2),dy=py-(b.top+b.height/2);
+  if(!force && Math.hypot(dx,dy)>120)return;
+  const now=performance.now();
+  if(now-lastFlee<200)return;
+  lastFlee=now;
+  dodge.style.left=(12+Math.random()*76)+'%';
+  dodge.style.top=(15+Math.random()*68)+'%';
+  esc++;
+  dodge.textContent=msgs[Math.min(esc-1,msgs.length-1)];
+  if(esc>=5){
+    caught=true;
+    dodge.textContent='Fine, you win. Email me 📧';
+    hint.textContent='Persistence noted. That is a good trait in an engineer.';
+    dodge.style.left='50%';dodge.style.top='64%';
+    award('hire');
+    toast('You caught the button. It respects you now.');
   }
 }
-arena.addEventListener('mousemove',flee);
-
-/* ---------- terminal ---------- */
-const out=$('#out'),inp=$('#in'),hist=[];let hi=0;
-const say=(t,c)=>{const p=document.createElement('p');p.innerHTML=t;if(c)p.className=c;out.appendChild(p);$('#term').scrollTop=1e5};
-const cmds={
- help:()=>'commands: <span class="f">about, skills, projects, links, whoami, theme &lt;dracula|monokai|tokyo|light&gt;, matrix, sudo hire nick, clear</span>',
- about:()=>'Nick, 24, Nairobi. Self-taught. Python/Django first, reverse engineering for fun.',
- whoami:()=>'a human who reads documentation for fun',
- skills:()=>'<span class="f">python django html css js</span> | <span class="k">winapi c asm</span> | <span class="c">ollama tts linux networking</span>',
- projects:()=>'CyberIOT, ASMBolt, TCP-IP-Illustrated, AssemblyLanguage, WinAPI, CommandLine-Scripting, C-Code',
- links:()=>'github.com/RennexTech | rennextech.co.ke | rennextech@gmail.com',
- ls:()=>'about.py  stack/  projects/  hire_me.py',
- matrix:()=>{rain();return 'wake up, Neo...'},
- clear:()=>{out.innerHTML='';return ''},
- 'sudo hire nick':()=>{location.hash='#contact';return '[sudo] permission granted. Taking you to the contact form...'},
- sudo:()=>'nice try. Use "sudo hire nick" instead 😉'
-};
-say('Welcome. Type <span class="f">help</span> to see what this thing can do.');
-inp.addEventListener('keydown',e=>{
-  if(e.key==='Enter'){
-    const v=inp.value.trim();inp.value='';if(!v)return;hist.push(v);hi=hist.length;
-    say('<span class="f">$</span> '+v.replace(/</g,'&lt;'));
-    const l=v.toLowerCase();
-    if(l.startsWith('theme ')){const t=l.split(' ')[1];if(['dracula','monokai','tokyo','light'].includes(t)){setTheme(t);say('theme set to '+t)}else say('unknown theme','d');return}
-    const f=cmds[l];say(f?f():'command not found: '+v.replace(/</g,'&lt;')+' (try help)',f?'':'d');
-  }else if(e.key==='ArrowUp'&&hi>0){inp.value=hist[--hi]}
-  else if(e.key==='ArrowDown'){inp.value=hist[++hi]||'';}
+arena.addEventListener('pointermove',e=>{if(e.pointerType==='mouse')flee(e.clientX,e.clientY)});
+dodge.addEventListener('pointerdown',e=>{
+  if(caught)return;
+  e.preventDefault();
+  flee(e.clientX,e.clientY,true);
 });
-$('#term').addEventListener('click',()=>inp.focus());
+dodge.addEventListener('click',e=>{if(!caught)e.preventDefault()});
+arena.addEventListener('click',e=>{if(e.target===arena)flee(e.clientX,e.clientY,true)});
 
-/* ---------- matrix rain (Konami or terminal) ---------- */
+/* ================= NINJA CAT ================= */
+const cat=$('#cat');
+let catCD=0;
+function catMove(ax,ay){
+  const pad=30;
+  const w=innerWidth,h=innerHeight;
+  let x=0,y=0,tries=0;
+  do{
+    x=pad+Math.random()*Math.max(60,w-pad*2-30);
+    y=pad+Math.random()*Math.max(60,h-pad*2-30);
+    tries++;
+  }while(ax!=null && Math.hypot(x-ax,y-ay)<190 && tries<10);
+  cat.style.left=x+'px';
+  cat.style.top=y+'px';
+}
+catMove();
+setInterval(()=>{if(cat.classList.contains('poof'))return;catMove()},3400);
+addEventListener('pointermove',e=>{
+  if(e.pointerType!=='mouse')return;
+  const now=performance.now();
+  if(now-catCD<650)return;
+  const r=cat.getBoundingClientRect();
+  if(!r.width)return;
+  const d=Math.hypot(e.clientX-(r.left+r.width/2),e.clientY-(r.top+r.height/2));
+  if(d<95){catCD=now;catMove(e.clientX,e.clientY)}
+},{passive:true});
+cat.addEventListener('click',()=>{
+  if(cat.classList.contains('poof'))return;
+  cat.classList.add('poof');
+  award('cat');
+  rain(true);
+  toast('🐱‍👤 meow. You found the cat. The cat is impressed. The cat has no job to offer you.');
+});
+
+/* ================= MATRIX RAIN ================= */
 const rc=$('#rain'),rx=rc.getContext('2d');let rt;
-function rain(){
+function rain(silent){
+  if(!silent)award('matrix');
   rc.width=innerWidth;rc.height=innerHeight;rc.style.display='block';
-  const cols=Math.floor(innerWidth/16),y=Array(cols).fill(0);clearInterval(rt);
-  const end=Date.now()+6000;
+  const cols=Math.floor(innerWidth/16),y=Array(cols).fill(0);
+  clearInterval(rt);
+  const end=Date.now()+6500;
+  toast('WELCOME TO THE MATRIX. PLEASE IGNORE THE CAT.');
   rt=setInterval(()=>{
-    rx.fillStyle='rgba(0,0,0,.08)';rx.fillRect(0,0,rc.width,rc.height);rx.fillStyle=css('--f');rx.font='14px monospace';
-    y.forEach((v,i)=>{rx.fillText(String.fromCharCode(0x30A0+Math.random()*96),i*16,v*16);y[i]=v*16>rc.height&&Math.random()>.97?0:v+1});
+    rx.fillStyle='rgba(0,0,0,.08)';rx.fillRect(0,0,rc.width,rc.height);
+    rx.fillStyle=css('--f');rx.font='14px monospace';
+    y.forEach((v,i)=>{
+      rx.fillText(String.fromCharCode(0x30A0+Math.random()*96),i*16,v*16);
+      y[i]=v*16>rc.height&&Math.random()>.97?0:v+1;
+    });
     if(Date.now()>end){clearInterval(rt);rc.style.display='none'}
   },45);
 }
+$('#matrixBtn').addEventListener('click',()=>rain(false));
+$('#dockMatrix').addEventListener('click',()=>rain(false));
+
+/* ================= CHAOS MODE ================= */
+let chaosActive=false;
+function chaos(){
+  if(chaosActive)return;
+  chaosActive=true;
+  document.body.classList.add('chaos');
+  toast('☠ CHAOS MODE. Every button is now a coward. 10 seconds.');
+  const btns=$$('.btn').filter(b=>b.id!=='dodge');
+  let last=0;
+  const onMove=e=>{
+    if(coarse())return;
+    const now=performance.now();if(now-last<80)return;last=now;
+    btns.forEach(b=>{
+      const r=b.getBoundingClientRect();
+      if(!r.width)return;
+      const d=Math.hypot(e.clientX-(r.left+r.width/2),e.clientY-(r.top+r.height/2));
+      if(d<120){
+        b.style.transition='transform .3s cubic-bezier(.2,.8,.3,1)';
+        b.style.transform='translate('+((Math.random()-.5)*140)+'px,'+((Math.random()-.5)*90)+'px) rotate('+((Math.random()-.5)*16)+'deg)';
+        clearTimeout(b._ct);
+        b._ct=setTimeout(()=>{b.style.transform=''},1400);
+      }
+    });
+  };
+  document.addEventListener('mousemove',onMove);
+  setTimeout(()=>{
+    document.removeEventListener('mousemove',onMove);
+    btns.forEach(b=>{clearTimeout(b._ct);b.style.transform='';b.style.transition=''});
+    document.body.classList.remove('chaos');
+    chaosActive=false;
+    award('chaos');
+    toast('Chaos survived. The buttons have returned to their depressing jobs.');
+  },10000);
+}
+$('#dockChaos').addEventListener('click',chaos);
+
+/* ================= surprises ================= */
+$('#surpriseBtn').addEventListener('click',()=>{
+  const s=[
+    'Achievement unlocked: you clicked a button on purpose. Rare internet behaviour.',
+    '404: adult supervision not found.',
+    'Nick is compiling a thought. Estimated completion: somewhere between now and 2099.',
+    'Warning: excessive curiosity may result in reading documentation voluntarily.',
+    'The bugs are not bugs. They are undocumented personality features.',
+    'You have been promoted to Senior Button Clicker. Salary: exposure.',
+    'This site was tested on one browser and a lot of hope.',
+    'Fun fact: the cat in the corner has seen things.'
+  ];
+  toast(s[Math.random()*s.length|0]);
+});
+
+/* ================= dock ================= */
+$('#dockTerm').addEventListener('click',()=>{
+  location.hash='#play';
+  setTimeout(()=>{if(!coarse())$('#in').focus()},350);
+});
+$('#dockTop').addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+
+/* ================= terminal ================= */
+const out=$('#out'),inp=$('#in'),hist=[];let hi=0;
+const say=(t,c)=>{
+  const p=document.createElement('p');
+  p.innerHTML=t;if(c)p.className=c;
+  out.appendChild(p);
+  $('#term').scrollTop=1e5;
+};
+const cmds={
+  help:()=>'commands: <span class="f">about, skills, projects, links, whoami, theme &lt;dracula|monokai|tokyo|light&gt;, matrix, sudo hire nick, clear</span>',
+  about:()=>'Nick, 24, Nairobi. Self-taught. Python/Django first, reverse engineering for fun.',
+  whoami:()=>'a human who reads documentation for fun',
+  skills:()=>'<span class="f">python django html css js</span> | <span class="k">winapi c asm</span> | <span class="c">ollama tts linux networking</span>',
+  projects:()=>'CyberIOT, ASMBolt, TCP-IP-Illustrated, AssemblyLanguage, WinAPI, CommandLine-Scripting, C-Code',
+  links:()=>'github.com/RennexTech | rennextech.co.ke | rennextech@gmail.com',
+  ls:()=>'about.py  stack/  projects/  hire_me.py  cat.png',
+  matrix:()=>{rain(false);return 'wake up, Neo...'},
+  clear:()=>{out.innerHTML='';return ''},
+  'sudo hire nick':()=>{award('sudo');location.hash='#contact';return '[sudo] permission granted. Taking you to the contact form...'},
+  sudo:()=>'nice try. Use "sudo hire nick" instead 😉'
+};
+say('Welcome. Type <span class="f">help</span> — or just tap one of the buttons under this window.');
+inp.addEventListener('keydown',e=>{
+  if(e.key==='Enter'){
+    const v=inp.value.trim();inp.value='';if(!v)return;
+    hist.push(v);hi=hist.length;
+    say('<span class="f">$</span> '+v.replace(/</g,'&lt;'));
+    const l=v.toLowerCase();
+    if(l.startsWith('theme ')){
+      const t=l.split(' ')[1];
+      if(['dracula','monokai','tokyo','light'].includes(t)){setTheme(t);say('theme set to '+t)}
+      else say('unknown theme','d');
+      return;
+    }
+    const f=cmds[l];
+    say(f?f():'command not found: '+v.replace(/</g,'&lt;')+' (try help)',f?'':'d');
+  }else if(e.key==='ArrowUp'&&hi>0){inp.value=hist[--hi]}
+  else if(e.key==='ArrowDown'){inp.value=hist[++hi]||''}
+});
+$('#term').addEventListener('click',()=>{if(!coarse())inp.focus()});
+$$('[data-cmd]').forEach(b=>b.addEventListener('click',()=>{
+  inp.value=b.dataset.cmd;
+  inp.dispatchEvent(new KeyboardEvent('keydown',{key:'Enter',bubbles:true}));
+  if(!coarse())inp.focus();
+}));
+
+/* ================= konami ================= */
 const kon=[38,38,40,40,37,39,37,39,66,65];let ki=0;
-addEventListener('keydown',e=>{if(e.target===inp)return;ki=e.keyCode===kon[ki]?ki+1:0;if(ki===kon.length){ki=0;rain()}});
+addEventListener('keydown',e=>{
+  if(e.target===inp)return;
+  ki=(e.keyCode===kon[ki])?ki+1:0;
+  if(ki===kon.length){ki=0;award('konami');rain(true);toast('↑↑↓↓←→←→BA — old magic still works.')}
+});
+
+/* ================= first-visit nudge ================= */
+setTimeout(()=>{
+  if(!found.size)toast('psst. that 🏆 button in the corner lists every secret on this page.',4200);
+},3000);
+
 })();
 </script>
 </body>
