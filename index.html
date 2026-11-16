@@ -1,1566 +1,335 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nick The Chief | RennexTech</title>
-    
-    <style>
-        /* ═══════════════════════════════════════════════════════════
-           VANILLA CSS PORTFOLIO VERSION - ZERO CDN DEPENDENCIES
-           I made this coz if tailwind goes down my page looks like it came from 1900s😂
-           Neon Hacker Aesthetic with Custom Cursor & Glitch Effects
-           ═══════════════════════════════════════════════════════════ */
-
-        /* ───────── FONT IMPORTS ───────── */
-        @font-face {
-            font-family: 'Poppins';
-            src: url('data:font/woff2;base64,d09GMgABAAAAAAyoAA8AAAAACGQAAAxtAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAABmAAgkwIgUYCLDIIDhILEAoHAA8CJwEEBCQADIIGBXgHKhV/5FaLrVHaEEAAAABAAAAADgDHyREE/4ABBAwAQEA///////vb+P7/////uv7/v/8//3v//3vv+8BwAAA5/3n/2efX5dXVRcjHBwcHJx8Pjw+PyT8AFJQUmBSYFIAEwAVV5VVGZUVBVUVFVVVV1VVVVWVVQ5UBABAAAALgIAADwAAABUAAAABAAAADgAAABWAA8ADgAPAA8ADgAPAA8ADgAPAA8ADgAPAA8ADgAPAA8ADgAPAA8ADgAPAA8AEAAAADwAAADwADAA8ADwAPAA8ADwAPAA8ADwAPAA8ADwAPAA8ADwAPAA8ADwAPAA8ADwAPAA8ADwAPAA8ADwAPAA8ADwAPAA8ADwAPAA8ADwAPAA8ADwAPAA8ADwAPAA8ADwAPAA8ADwAPAA8ADwAPAA8A') format('woff2');
-            font-weight: normal;
-        }
-
-        @font-face {
-            font-family: 'JetBrains Mono';
-            src: url('data:font/woff2;base64,d09GMgABAAAAAAy0AA8AAAAACGQAAAxtAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAABmAAgkwIgUYCLDIIDhILEAoHAA8CJwEEBCQADIIGBXgHKhV/5FaLrVHaEEAAAABAAAAADgDHyREE/4ABBAwAQEA///////vb+P7/////uv7/v/8//3vv+8BwAAA5/3n/2efX5dXVRcjHBwcHJx8Pjw+PyT8AFJQUmBSYFIAEwAVV5VVGZUVBVUVFVVVV1VVVVWVVQ5UBABAAAALgIAADwAAABUAAAABAAAADgAAABWAA8ADgAPAA8ADgAPAA8ADgAPAA8ADgAPAA8ADgAPAA8ADgAPAA8ADgAPAA8AEAAAADwAAADwADAA8ADwAPAA8ADwAPAA8ADwAPAA8ADwAPAA8ADwAPAA8ADwAPAA8ADwAPAA8ADwAPAA8ADwAPAA8ADwAPAA8ADwAPAA8ADwAPAA8ADwAPAA8ADwAPAA8ADwAPAA8ADwAPAA8ADwAPAA8A') format('woff2');
-            font-weight: 400;
-        }
-
-        /* System font fallback in case web fonts fail */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --bg-dark: #070707;
-            --accent-green: #00ff41;
-            --accent-blue: #0081ff;
-            --accent-purple: #a855f7;
-            --text-primary: #e5e5e5;
-            --text-secondary: #999;
-            --glass: rgba(255, 255, 255, 0.03);
-            --glow: 0 0 15px rgba(0, 255, 65, 0.3);
-            --glow-blue: 0 0 15px rgba(0, 129, 255, 0.3);
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background-color: var(--bg-dark);
-            color: var(--text-primary);
-            overflow-x: hidden;
-            cursor: none;
-            line-height: 1.6;
-        }
-
-        /* ───────── CUSTOM CURSOR ───────── */
-        #cursor {
-            width: 10px;
-            height: 10px;
-            background: var(--accent-green);
-            border-radius: 50%;
-            position: fixed;
-            top: 0;
-            left: 0;
-            pointer-events: none;
-            z-index: 9999;
-            mix-blend-mode: screen;
-        }
-
-        #cursor-ring {
-            width: 32px;
-            height: 32px;
-            border: 1.5px solid rgba(0, 255, 65, 0.4);
-            border-radius: 50%;
-            position: fixed;
-            top: 0;
-            left: 0;
-            pointer-events: none;
-            z-index: 9998;
-        }
-
-        /* ───────── TYPOGRAPHY ───────── */
-        .mono {
-            font-family: 'JetBrains Mono', 'Courier New', monospace;
-            letter-spacing: 0.05em;
-        }
-
-        h1, h2, h3, h4, h5, h6 {
-            font-weight: 700;
-            line-height: 1.2;
-        }
-
-        /* ───────── ANIMATIONS ───────── */
-        @keyframes pulse-dot {
-            0%, 100% { transform: scale(1); opacity: 1; }
-            50% { transform: scale(1.5); opacity: 0.5; }
-        }
-
-        @keyframes glitch {
-            0%, 95%, 100% { clip-path: none; transform: none; }
-            96% { clip-path: polygon(0 20%, 100% 20%, 100% 40%, 0 40%); transform: translate(-3px, 0); }
-            98% { clip-path: polygon(0 60%, 100% 60%, 100% 80%, 0 80%); transform: translate(3px, 0); }
-        }
-
-        @keyframes scroll-hint {
-            0%, 100% { opacity: 1; transform: translateY(0); }
-            50% { opacity: 0.3; transform: translateY(10px); }
-        }
-
-        @keyframes blink {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0; }
-        }
-
-        @keyframes fadeInDown {
-            from { opacity: 0; transform: translateY(-30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes slideInLeft {
-            from { opacity: 0; transform: translateX(-50px); }
-            to { opacity: 1; transform: translateX(0); }
-        }
-
-        @keyframes slideInRight {
-            from { opacity: 0; transform: translateX(50px); }
-            to { opacity: 1; transform: translateX(0); }
-        }
-
-        .pulse {
-            display: inline-block;
-            width: 8px;
-            height: 8px;
-            background: var(--accent-green);
-            border-radius: 50%;
-            animation: pulse-dot 2s infinite;
-        }
-
-        .cursor-blink {
-            animation: blink 1s step-end infinite;
-        }
-
-        /* ───────── GLASS MORPHISM ───────── */
-        .glass-card {
-            background: var(--glass);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 20px;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-
-        .glass-card:hover {
-            background: rgba(255, 255, 255, 0.06);
-            border-color: var(--accent-green);
-            transform: translateY(-5px);
-            box-shadow: var(--glow);
-        }
-
-        /* ───────── GRADIENTS & COLORS ───────── */
-        .gradient-text {
-            background: linear-gradient(90deg, var(--accent-green), var(--accent-blue));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .gradient-text-purple {
-            background: linear-gradient(90deg, var(--accent-purple), var(--accent-blue));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        /* ───────── SCROLLBAR ───────── */
-        ::-webkit-scrollbar {
-            width: 6px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: var(--bg-dark);
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: #222;
-            border-radius: 10px;
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: var(--accent-green);
-        }
-
-        /* ───────── TERMINAL BOX ───────── */
-        .terminal-box {
-            background: #000;
-            border-left: 3px solid var(--accent-green);
-            padding-left: 1rem;
-            font-family: 'JetBrains Mono', monospace;
-        }
-
-        /* ═══════════════════════════════════════════════════════════
-           NAVBAR
-           ═══════════════════════════════════════════════════════════ */
-
-        nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
-            padding: 1.2rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: rgba(7, 7, 7, 0.85);
-            backdrop-filter: blur(16px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        .nav-logo {
-            font-size: 0.75rem;
-            font-weight: 700;
-            letter-spacing: 0.2em;
-            color: var(--accent-green);
-            font-family: 'JetBrains Mono', monospace;
-            animation: fadeInDown 0.8s ease;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-            list-style: none;
-        }
-
-        .nav-links a {
-            color: #888;
-            font-size: 0.78rem;
-            text-decoration: none;
-            font-family: 'JetBrains Mono', monospace;
-            transition: color 0.2s;
-            opacity: 0;
-            animation: fadeInDown 0.8s ease forwards;
-        }
-
-        .nav-links a:nth-child(1) { animation-delay: 0.1s; }
-        .nav-links a:nth-child(2) { animation-delay: 0.2s; }
-        .nav-links a:nth-child(3) { animation-delay: 0.3s; }
-        .nav-links a:nth-child(4) { animation-delay: 0.4s; }
-
-        .nav-links a:hover {
-            color: var(--accent-green);
-        }
-
-        /* ═══════════════════════════════════════════════════════════
-           HERO SECTION
-           ═══════════════════════════════════════════════════════════ */
-
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            position: relative;
-            overflow: hidden;
-            padding: 2rem;
-            padding-top: 120px;
-            text-align: center;
-        }
-
-        .hero-glow {
-            position: absolute;
-            top: 20%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 600px;
-            height: 600px;
-            background: radial-gradient(circle, rgba(0, 255, 65, 0.1) 0%, transparent 70%);
-            z-index: -1;
-            pointer-events: none;
-            filter: blur(60px);
-        }
-
-        .hero-grid {
-            position: absolute;
-            inset: 0;
-            background-image: 
-                linear-gradient(rgba(0, 255, 65, 0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(0, 255, 65, 0.03) 1px, transparent 1px);
-            background-size: 60px 60px;
-            z-index: -1;
-        }
-
-        .hero-status {
-            font-size: 0.75rem;
-            letter-spacing: 0.3em;
-            color: var(--accent-green);
-            margin-bottom: 1.5rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.75rem;
-            animation: fadeInUp 0.8s ease;
-        }
-
-        .hero h1 {
-            font-size: clamp(3rem, 12vw, 8rem);
-            font-weight: 800;
-            margin: 1rem 0;
-            letter-spacing: -0.02em;
-            animation: slideInLeft 1s ease 0.2s both;
-        }
-
-        .hero .subtitle {
-            font-family: 'JetBrains Mono', monospace;
-            color: #888;
-            font-size: 0.85rem;
-            margin-bottom: 2rem;
-            animation: slideInRight 1s ease 0.3s both;
-        }
-
-        .hero-description {
-            max-width: 700px;
-            color: #999;
-            font-size: 1.1rem;
-            line-height: 1.8;
-            margin-bottom: 2rem;
-            animation: fadeInUp 0.8s ease 0.4s both;
-        }
-
-        .typewriter-container {
-            font-family: 'JetBrains Mono', monospace;
-            color: var(--accent-green);
-            font-size: 0.85rem;
-            margin: 2rem 0;
-            min-height: 25px;
-            animation: fadeInUp 0.8s ease 0.5s both;
-        }
-
-        .hero-buttons {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin-bottom: 3rem;
-            animation: fadeInUp 0.8s ease 0.6s both;
-        }
-
-        .btn {
-            padding: 0.75rem 1.75rem;
-            border-radius: 0;
-            border: 1.5px solid var(--accent-green);
-            background: transparent;
-            color: var(--accent-green);
-            font-family: 'JetBrains Mono', monospace;
-            font-weight: 600;
-            font-size: 0.8rem;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            letter-spacing: 0.05em;
-        }
-
-        .btn:hover {
-            background: var(--accent-green);
-            color: #000;
-            transform: translateY(-3px);
-            box-shadow: var(--glow);
-        }
-
-        .btn-primary {
-            background: var(--accent-green);
-            color: #000;
-            border-color: var(--accent-green);
-        }
-
-        .btn-primary:hover {
-            background: transparent;
-            color: var(--accent-green);
-        }
-
-        .scroll-indicator {
-            position: absolute;
-            bottom: 40px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 0.5rem;
-            animation: scroll-hint 2s ease-in-out infinite;
-        }
-
-        .scroll-indicator .bar {
-            width: 1px;
-            height: 50px;
-            background: linear-gradient(to bottom, var(--accent-green), transparent);
-        }
-
-        .scroll-indicator .label {
-            font-size: 0.7rem;
-            color: #666;
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-            font-family: 'JetBrains Mono', monospace;
-        }
-
-        /* ═══════════════════════════════════════════════════════════
-           DIVIDER
-           ═══════════════════════════════════════════════════════════ */
-
-        .divider {
-            width: 100%;
-            height: 1px;
-            background: linear-gradient(to right, transparent, rgba(0, 255, 65, 0.3), transparent);
-            margin: 4rem 0;
-        }
-
-        /* ═══════════════════════════════════════════════════════════
-           ABOUT SECTION
-           ═══════════════════════════════════════════════════════════ */
-
-        .about {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 6rem 2rem;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-        }
-
-        .about-text h2 {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.85rem;
-            color: var(--accent-green);
-            margin-bottom: 1rem;
-            letter-spacing: 0.1em;
-        }
-
-        .about-text h3 {
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
-            line-height: 1.3;
-        }
-
-        .about-text p {
-            color: #999;
-            margin-bottom: 1.5rem;
-            line-height: 1.8;
-        }
-
-        .about-stats {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1.5rem;
-        }
-
-        .stat-card {
-            background: var(--glass);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 16px;
-            padding: 1.5rem;
-            text-align: center;
-            transition: all 0.3s ease;
-        }
-
-        .stat-card:hover {
-            border-color: var(--accent-green);
-            background: rgba(255, 255, 255, 0.06);
-        }
-
-        .stat-number {
-            font-size: 2rem;
-            font-weight: 800;
-            color: white;
-        }
-
-        .stat-label {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.7rem;
-            color: #666;
-            margin-top: 0.5rem;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-        }
-
-        /* ═══════════════════════════════════════════════════════════
-           SKILLS SECTION
-           ═══════════════════════════════════════════════════════════ */
-
-        .skills {
-            background: #0c0c0c;
-            padding: 6rem 2rem;
-        }
-
-        .skills-container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .skills-header {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            margin-bottom: 4rem;
-            align-items: end;
-        }
-
-        .skills-header h2 {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.85rem;
-            color: var(--accent-green);
-            letter-spacing: 0.1em;
-        }
-
-        .skills-header h3 {
-            font-size: 3rem;
-            line-height: 1.2;
-        }
-
-        .skills-header p {
-            color: #666;
-            font-size: 0.95rem;
-            text-align: right;
-        }
-
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-bottom: 3rem;
-        }
-
-        .skill-card {
-            background: var(--glass);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 16px;
-            padding: 2rem;
-            transition: all 0.4s ease;
-        }
-
-        .skill-card:hover {
-            border-color: var(--accent-green);
-            background: rgba(255, 255, 255, 0.06);
-            transform: translateY(-5px);
-        }
-
-        .skill-icon {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .skill-card h4 {
-            font-size: 1.2rem;
-            margin-bottom: 0.75rem;
-        }
-
-        .skill-card p {
-            color: #999;
-            font-size: 0.9rem;
-            line-height: 1.6;
-            margin-bottom: 1rem;
-        }
-
-        .skill-list {
-            list-style: none;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.75rem;
-            color: #666;
-        }
-
-        .skill-list li {
-            margin-bottom: 0.5rem;
-        }
-
-        /* Proficiency bars */
-        .proficiency {
-            background: var(--glass);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 16px;
-            padding: 2rem;
-        }
-
-        .proficiency h4 {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.85rem;
-            color: var(--accent-green);
-            margin-bottom: 2rem;
-            letter-spacing: 0.1em;
-        }
-
-        .proficiency-item {
-            margin-bottom: 2rem;
-        }
-
-        .proficiency-item:last-child {
-            margin-bottom: 0;
-        }
-
-        .proficiency-header {
-            display: flex;
-            justify-content: space-between;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.8rem;
-            color: #666;
-            margin-bottom: 0.5rem;
-        }
-
-        .proficiency-bar {
-            height: 3px;
-            background: #1a1a1a;
-            border-radius: 2px;
-            overflow: hidden;
-        }
-
-        .proficiency-fill {
-            height: 100%;
-            background: linear-gradient(90deg, var(--accent-green), var(--accent-blue));
-            border-radius: 2px;
-            transition: width 2s cubic-bezier(0.34, 1.56, 0.64, 1);
-            width: 0;
-        }
-
-        /* ═══════════════════════════════════════════════════════════
-           PROJECTS SECTION
-           ═══════════════════════════════════════════════════════════ */
-
-        .projects {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 6rem 2rem;
-        }
-
-        .projects-header {
-            margin-bottom: 4rem;
-        }
-
-        .projects-header h2 {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.85rem;
-            color: var(--accent-green);
-            letter-spacing: 0.1em;
-            margin-bottom: 0.5rem;
-        }
-
-        .projects-header h3 {
-            font-size: 2.8rem;
-            margin-bottom: 1rem;
-        }
-
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
-            margin-bottom: 3rem;
-        }
-
-        .project-card {
-            position: relative;
-            overflow: hidden;
-            border-radius: 16px;
-            aspect-ratio: 16/10;
-            background: linear-gradient(135deg, rgba(0, 255, 65, 0.1), rgba(0, 129, 255, 0.1));
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            transition: all 0.4s ease;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-            padding: 2rem;
-            text-decoration: none;
-            color: inherit;
-        }
-
-        .project-card::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: radial-gradient(circle at center, transparent 0%, rgba(0, 0, 0, 0.8) 100%);
-            z-index: 1;
-        }
-
-        .project-card:hover {
-            border-color: var(--accent-green);
-            transform: translateY(-8px);
-            box-shadow: var(--glow);
-        }
-
-        .project-tag {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.7rem;
-            color: var(--accent-green);
-            border: 1.5px solid rgba(0, 255, 65, 0.3);
-            padding: 0.4rem 0.8rem;
-            border-radius: 4px;
-            display: inline-block;
-            margin-bottom: 1rem;
-            position: relative;
-            z-index: 2;
-        }
-
-        .project-title {
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-            position: relative;
-            z-index: 2;
-        }
-
-        .project-description {
-            color: #999;
-            font-size: 0.9rem;
-            line-height: 1.6;
-            position: relative;
-            z-index: 2;
-            margin-bottom: 1rem;
-        }
-
-        .project-link {
-            color: var(--accent-green);
-            text-decoration: none;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.75rem;
-            display: inline-block;
-            position: relative;
-            z-index: 2;
-            letter-spacing: 0.1em;
-            transition: all 0.2s ease;
-        }
-
-        .project-link:hover {
-            transform: translateX(3px);
-        }
-
-        /* ═══════════════════════════════════════════════════════════
-           REPOS SECTION
-           ═══════════════════════════════════════════════════════════ */
-
-        .repos {
-            background: #0a0a0a;
-            padding: 6rem 2rem;
-        }
-
-        .repos-container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .repos-header {
-            margin-bottom: 3rem;
-        }
-
-        .repos-header h2 {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.85rem;
-            color: var(--accent-green);
-            letter-spacing: 0.1em;
-            margin-bottom: 0.5rem;
-        }
-
-        .repos-header h3 {
-            font-size: 2.8rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .repos-header p {
-            color: #666;
-            font-size: 0.95rem;
-        }
-
-        .repo-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.5rem;
-            margin-bottom: 3rem;
-        }
-
-        .repo-card {
-            background: #0d0d0d;
-            border: 1px solid rgba(255, 255, 255, 0.07);
-            border-radius: 12px;
-            padding: 1.5rem;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            color: inherit;
-            display: block;
-        }
-
-        .repo-card:hover {
-            border-color: var(--accent-green);
-            box-shadow: 0 0 12px rgba(0, 255, 65, 0.15);
-            transform: translateY(-3px);
-        }
-
-        .repo-icon {
-            font-size: 1.5rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .repo-category {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.65rem;
-            color: var(--accent-blue);
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            margin-bottom: 0.75rem;
-        }
-
-        .repo-card h4 {
-            font-size: 1.1rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .repo-card p {
-            color: #666;
-            font-size: 0.85rem;
-            line-height: 1.5;
-        }
-
-        .repos-button {
-            text-align: center;
-        }
-
-        .repos-button a {
-            color: var(--accent-green);
-            text-decoration: none;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.8rem;
-            border: 1.5px solid rgba(0, 255, 65, 0.3);
-            padding: 0.75rem 2rem;
-            border-radius: 0;
-            display: inline-block;
-            transition: all 0.3s ease;
-            letter-spacing: 0.1em;
-        }
-
-        .repos-button a:hover {
-            background: var(--accent-green);
-            color: #000;
-            transform: translateY(-3px);
-            box-shadow: var(--glow);
-        }
-
-        /* ═══════════════════════════════════════════════════════════
-           TIMELINE
-           ═══════════════════════════════════════════════════════════ */
-
-        .timeline {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 6rem 2rem;
-        }
-
-        .timeline-header {
-            margin-bottom: 3rem;
-        }
-
-        .timeline-header h2 {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.85rem;
-            color: var(--accent-green);
-            letter-spacing: 0.1em;
-            margin-bottom: 0.5rem;
-        }
-
-        .timeline-header h3 {
-            font-size: 2.8rem;
-        }
-
-        .timeline-list {
-            list-style: none;
-        }
-
-        .timeline-item {
-            position: relative;
-            padding-left: 2.5rem;
-            margin-bottom: 2.5rem;
-        }
-
-        .timeline-item::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 8px;
-            width: 8px;
-            height: 8px;
-            background: var(--accent-green);
-            border-radius: 50%;
-            box-shadow: 0 0 8px rgba(0, 255, 65, 0.6);
-        }
-
-        .timeline-item::after {
-            content: '';
-            position: absolute;
-            left: 3.5px;
-            top: 16px;
-            width: 1px;
-            height: calc(100% + 1.5rem);
-            background: rgba(0, 255, 65, 0.15);
-        }
-
-        .timeline-item:last-child::after {
-            display: none;
-        }
-
-        .timeline-year {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.75rem;
-            color: var(--accent-green);
-            margin-bottom: 0.25rem;
-        }
-
-        .timeline-title {
-            font-size: 1.1rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-        }
-
-        .timeline-description {
-            color: #999;
-            font-size: 0.9rem;
-            line-height: 1.6;
-        }
-
-        /* ═══════════════════════════════════════════════════════════
-           CONTACT SECTION
-           ═══════════════════════════════════════════════════════════ */
-
-        .contact {
-            background: #050505;
-            padding: 6rem 2rem;
-            text-align: center;
-            position: relative;
-        }
-
-        .contact::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100%;
-            height: 1px;
-            background: linear-gradient(to right, transparent, rgba(0, 255, 65, 0.5), transparent);
-        }
-
-        .contact-container {
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        .contact h2 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            line-height: 1.3;
-        }
-
-        .contact p {
-            color: #666;
-            font-size: 1.1rem;
-            margin-bottom: 2.5rem;
-        }
-
-        .contact-email {
-            font-size: 1.3rem;
-            margin-bottom: 2rem;
-            transition: all 0.3s ease;
-        }
-
-        .contact-email a {
-            color: var(--accent-green);
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            transition: all 0.3s ease;
-        }
-
-        .contact-email a:hover {
-            transform: translateX(5px);
-            color: var(--accent-blue);
-        }
-
-        .contact-links {
-            display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-            flex-wrap: wrap;
-        }
-
-        .contact-link {
-            color: var(--text-primary);
-            text-decoration: none;
-            padding: 0.75rem 1.5rem;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 0;
-            background: transparent;
-            transition: all 0.3s ease;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.8rem;
-            letter-spacing: 0.05em;
-        }
-
-        .contact-link:hover {
-            border-color: var(--accent-green);
-            background: var(--accent-green);
-            color: #000;
-        }
-
-        /* ═══════════════════════════════════════════════════════════
-           FOOTER
-           ═══════════════════════════════════════════════════════════ */
-
-        footer {
-            padding: 2rem;
-            text-align: center;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.7rem;
-            color: #555;
-            letter-spacing: 0.1em;
-        }
-
-        /* ═══════════════════════════════════════════════════════════
-           RESPONSIVE
-           ═══════════════════════════════════════════════════════════ */
-
-        @media (max-width: 768px) {
-            .nav-links {
-                gap: 1rem;
-            }
-
-            .hero h1 {
-                margin: 0.5rem 0;
-            }
-
-            .about {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-
-            .skills-header {
-                grid-template-columns: 1fr;
-                text-align: left;
-            }
-
-            .skills-header p {
-                text-align: left;
-            }
-
-            .projects-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .contact h2 {
-                font-size: 2rem;
-            }
-
-            .hero-buttons {
-                gap: 0.75rem;
-            }
-
-            .btn {
-                padding: 0.6rem 1.2rem;
-                font-size: 0.7rem;
-            }
-        }
-
-        @media (max-width: 480px) {
-            nav {
-                padding: 1rem;
-            }
-
-            .nav-links {
-                gap: 0.5rem;
-            }
-
-            .nav-links a {
-                font-size: 0.7rem;
-            }
-
-            .hero {
-                padding-top: 100px;
-            }
-
-            .hero h1 {
-                font-size: 2rem;
-            }
-
-            .about-stats {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nick (RennexTech) | Python, Django & low-level hacking</title>
+<meta name="description" content="Nick, a self-taught developer from Nairobi. Python and Django by day, WinAPI, C and assembly reverse engineering for fun.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#1e1f29;--win:#282a36;--bar:#21222c;--fg:#f8f8f2;--dim:#6272a4;--k:#ff79c6;--s:#f1fa8c;--f:#50fa7b;--n:#bd93f9;--c:#8be9fd;--o:#ffb86c;--line:#44475a}
+[data-t="monokai"]{--bg:#1b1c18;--win:#272822;--bar:#1e1f1a;--fg:#f8f8f2;--dim:#75715e;--k:#f92672;--s:#e6db74;--f:#a6e22e;--n:#ae81ff;--c:#66d9ef;--o:#fd971f;--line:#49483e}
+[data-t="tokyo"]{--bg:#16161e;--win:#1a1b26;--bar:#15161e;--fg:#c0caf5;--dim:#565f89;--k:#bb9af7;--s:#9ece6a;--f:#7aa2f7;--n:#ff9e64;--c:#7dcfff;--o:#e0af68;--line:#292e42}
+[data-t="light"]{--bg:#e9ebf0;--win:#fafafa;--bar:#e4e4e7;--fg:#383a42;--dim:#a0a1a7;--k:#a626a4;--s:#50a14f;--f:#4078f2;--n:#986801;--c:#0184bc;--o:#c18401;--line:#d4d4d8}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Lilex','Fira Code','JetBrains Mono',Consolas,monospace;background:var(--bg);color:var(--fg);line-height:1.7;font-size:15px;overflow-x:hidden;transition:background .4s}
+#gl{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.5}
+main,nav,footer{position:relative;z-index:1}
+a{color:inherit}
+.k{color:var(--k)}.s{color:var(--s)}.f{color:var(--f)}.n{color:var(--n)}.c{color:var(--c)}.o{color:var(--o)}.d{color:var(--dim)}
+nav{position:sticky;top:0;z-index:50;display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap;padding:.7rem 1.5rem;background:color-mix(in srgb,var(--bar) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+nav .logo{font-weight:700}
+nav .links{display:flex;gap:1.2rem;flex-wrap:wrap}
+nav a{text-decoration:none;color:var(--dim);transition:color .2s}
+nav a:hover{color:var(--f)}
+.themes{display:flex;gap:.4rem}
+.themes button{width:18px;height:18px;border-radius:50%;border:2px solid var(--line);cursor:pointer}
+.themes button:hover{transform:scale(1.25)}
+section{max-width:1050px;margin:0 auto;padding:4.5rem 1.5rem}
+h2.t{font-size:.9rem;color:var(--dim);font-weight:400;margin-bottom:1.2rem}
+.win{background:var(--win);border:1px solid var(--line);border-radius:12px;box-shadow:0 20px 50px rgba(0,0,0,.35);overflow:hidden;transition:transform .15s ease-out,box-shadow .3s;will-change:transform}
+.win:hover{box-shadow:0 25px 60px rgba(0,0,0,.5),0 0 0 1px var(--f)}
+.bar{display:flex;align-items:center;gap:.5rem;padding:.6rem .9rem;background:var(--bar);border-bottom:1px solid var(--line);font-size:.75rem;color:var(--dim)}
+.dot{width:12px;height:12px;border-radius:50%}
+.dot:nth-child(1){background:#ff5f56}.dot:nth-child(2){background:#ffbd2e}.dot:nth-child(3){background:#27c93f}
+.bar .name{margin-left:.6rem}
+.code{padding:1.1rem 0;counter-reset:l;overflow-x:auto}
+.code div{padding:0 1.2rem 0 0;white-space:pre-wrap;word-break:break-word;counter-increment:l}
+.code div::before{content:counter(l);display:inline-block;width:3.2rem;padding-right:1rem;text-align:right;color:var(--dim);opacity:.6;user-select:none}
+.hero{min-height:88vh;display:flex;flex-direction:column;justify-content:center}
+.hero h1{font-size:clamp(2.2rem,7vw,4.6rem);line-height:1.1;margin-bottom:1rem}
+.hero h1 span{color:var(--f)}
+.sub{max-width:620px;color:var(--dim);margin-bottom:1.6rem;font-size:1rem}
+.btns{display:flex;gap:.8rem;flex-wrap:wrap;margin-bottom:2rem}
+.btn{padding:.65rem 1.2rem;border:1px solid var(--line);border-radius:8px;text-decoration:none;background:var(--win);transition:all .2s;font-size:.85rem}
+.btn:hover{border-color:var(--f);color:var(--f);transform:translateY(-3px)}
+.btn.p{background:var(--f);color:var(--bg);border-color:var(--f);font-weight:700}
+.btn.p:hover{color:var(--bg);filter:brightness(1.15)}
+.cur{display:inline-block;width:.6ch;background:var(--f);animation:bl 1s steps(1) infinite}
+@keyframes bl{50%{opacity:0}}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.4rem}
+.card{padding:1.3rem}
+.card h3{margin-bottom:.5rem;font-size:1rem}
+.card p{color:var(--dim);font-size:.85rem;margin-bottom:.8rem}
+.tag{display:inline-block;font-size:.7rem;padding:.1rem .6rem;border:1px solid var(--line);border-radius:99px;margin:0 .3rem .3rem 0;color:var(--c)}
+.meter{font-size:.8rem;color:var(--dim);display:flex;justify-content:space-between;gap:1rem}
+.meter b{color:var(--f);letter-spacing:-.1em;font-weight:400}
+a.repo{display:block;text-decoration:none;padding:1rem 1.2rem}
+a.repo:hover h3{color:var(--f)}
+.term{height:330px;overflow-y:auto;padding:1rem;font-size:.85rem;cursor:text}
+.term p{white-space:pre-wrap;word-break:break-word}
+.term .row{display:flex;gap:.6rem}
+.term input{flex:1;background:none;border:none;outline:none;color:var(--fg);font:inherit}
+.arena{position:relative;height:260px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:.6rem;text-align:center;padding:1rem}
+#dodge{position:absolute;left:50%;top:60%;transform:translate(-50%,-50%);transition:left .18s,top .18s;z-index:2}
+footer{text-align:center;padding:2.5rem 1rem;color:var(--dim);font-size:.75rem}
+.rv{opacity:0;transform:translateY(30px);transition:opacity .7s,transform .7s}
+.rv.in{opacity:1;transform:none}
+.p-bit{position:fixed;pointer-events:none;z-index:999;font-weight:700;transition:transform .8s cubic-bezier(.2,.8,.3,1),opacity .8s}
+#rain{position:fixed;inset:0;z-index:998;pointer-events:none;display:none}
+@media(max-width:600px){nav .links{gap:.7rem;font-size:.8rem}.code div::before{width:2rem}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
 </head>
 <body>
+<canvas id="gl"></canvas>
+<canvas id="rain"></canvas>
 
-    <!-- CUSTOM CURSOR -->
-    <div id="cursor"></div>
-    <div id="cursor-ring"></div>
+<nav>
+  <span class="logo"><span class="f">~/</span>rennextech</span>
+  <div class="links"><a href="#about">about.py</a><a href="#stack">stack</a><a href="#work">projects</a><a href="#play">terminal</a><a href="#contact">contact</a></div>
+  <div class="themes" title="Switch theme">
+    <button style="background:#bd93f9" data-th="dracula"></button>
+    <button style="background:#f92672" data-th="monokai"></button>
+    <button style="background:#7aa2f7" data-th="tokyo"></button>
+    <button style="background:#e9ebf0" data-th="light"></button>
+  </div>
+</nav>
 
-    <!-- NAVBAR -->
-    <nav>
-        <span class="nav-logo">➤ RENNEXTECH</span>
-        <ul class="nav-links">
-            <li><a href="#about">./about</a></li>
-            <li><a href="#skills">./skills</a></li>
-            <li><a href="#repos">./repos</a></li>
-            <li><a href="#contact">./contact</a></li>
-        </ul>
-    </nav>
+<main>
+<section class="hero">
+  <h1>Hey, I'm <span>Nick</span>.<br>I build things in Python<br>and break things in assembly.</h1>
+  <p class="sub">Self-taught dev from Nairobi. Django and Python are my daily drivers. WinAPI, C and x64 assembly are my part-time reverse engineering rabbit hole. I'm looking for a support / engineering role where I can fix real problems.</p>
+  <div class="btns">
+    <a class="btn p" href="#contact">Say hi</a>
+    <a class="btn" href="https://github.com/RennexTech" target="_blank" rel="noopener">GitHub</a>
+    <a class="btn" href="https://www.rennextech.co.ke" target="_blank" rel="noopener">Website</a>
+    <a class="btn" href="https://sites.google.com/view/rennextech/home" target="_blank" rel="noopener">Library</a>
+    <a class="btn" href="https://www.linkedin.com/in/nixon-ekirapa-7685542b8/" target="_blank" rel="noopener">LinkedIn</a>
+    <a class="btn" href="https://data.typeracer.com/pit/profile?user=nixoneen" target="_blank" rel="noopener">TypeRacer</a>
+  </div>
+  <div class="win" data-tilt style="max-width:640px">
+    <div class="bar"><i class="dot"></i><i class="dot"></i><i class="dot"></i><span class="name">nick.py</span></div>
+    <div class="code" id="heroCode"></div>
+  </div>
+</section>
 
-    <!-- HERO SECTION -->
-    <section class="hero">
-        <div class="hero-glow"></div>
-        <div class="hero-grid"></div>
+<section id="about" class="rv">
+  <h2 class="t"># about</h2>
+  <div class="win" data-tilt>
+    <div class="bar"><i class="dot"></i><i class="dot"></i><i class="dot"></i><span class="name">about.py</span></div>
+    <div class="code">
+<div><span class="k">class</span> <span class="f">Nick</span>:</div>
+<div>    location = <span class="s">"Nairobi, Kenya"</span></div>
+<div>    main_language = <span class="s">"Python"</span> <span class="d"># Django, REST APIs, automation</span></div>
+<div>    also_good_at = [<span class="s">"HTML"</span>, <span class="s">"CSS"</span>, <span class="s">"JavaScript"</span>, <span class="s">"Linux"</span>, <span class="s">"Networking"</span>]</div>
+<div>    part_time = [<span class="s">"WinAPI"</span>, <span class="s">"C"</span>, <span class="s">"x64 asm"</span>, <span class="s">"reverse engineering"</span>]</div>
+<div>    learning = [<span class="s">"Blender"</span>, <span class="s">"deeper Django"</span>, <span class="s">"hand-built UI"</span>]</div>
+<div>    typing_speed = <span class="n">100</span> <span class="d"># wpm, badge on TypeRacer</span></div>
+<div>    self_taught = <span class="n">True</span></div>
+<div></div>
+<div>    <span class="k">def</span> <span class="f">motto</span>(self):</div>
+<div>        <span class="k">return</span> <span class="s">"Don't just use the tool. Open it up and see how it works."</span></div>
+    </div>
+  </div>
+</section>
 
-        <div class="hero-status">
-            <span class="pulse"></span>
-            <span class="mono">Status: System Online // Node: Nairobi, Kenya</span>
-        </div>
+<section id="stack" class="rv">
+  <h2 class="t"># stack</h2>
+  <div class="grid">
+    <div class="win card" data-tilt>
+      <h3 class="f">Web &amp; Python</h3>
+      <p>Django backends, REST APIs, auth, databases, and the small desktop and browser tools I build for myself.</p>
+      <span class="tag">Django</span><span class="tag">REST</span><span class="tag">PostgreSQL</span><span class="tag">Tkinter</span><span class="tag">Chrome extensions</span>
+    </div>
+    <div class="win card" data-tilt>
+      <h3 class="k">Low-level</h3>
+      <p>Reading Windows internals, PE files and TCP packets to understand what the machine really does.</p>
+      <span class="tag">WinAPI</span><span class="tag">C</span><span class="tag">x64 ASM</span><span class="tag">PE format</span><span class="tag">TCP/IP</span>
+    </div>
+    <div class="win card" data-tilt>
+      <h3 class="c">Local AI</h3>
+      <p>Running models offline and wiring them into apps. TTS studios, chat GUIs and model tools, all on my own machine.</p>
+      <span class="tag">Ollama</span><span class="tag">Local LLMs</span><span class="tag">TTS</span><span class="tag">Prompting</span>
+    </div>
+  </div>
+</section>
 
-        <h1>I am <span class="gradient-text">Nick</span></h1>
-        <p class="mono subtitle">// Nick The Chief</p>
+<section id="work" class="rv">
+  <h2 class="t"># projects</h2>
+  <div class="grid">
+    <a class="win card repo" data-tilt href="https://github.com/RennexTech/CyberIOT" target="_blank" rel="noopener"><h3>📁 CyberIOT</h3><p>Django IoT platform: sensor data, dashboards and device management.</p><span class="tag">Django</span><span class="tag">IoT</span></a>
+    <a class="win card repo" data-tilt href="https://github.com/RennexTech/ASMBolt/" target="_blank" rel="noopener"><h3>📁 ASMBolt</h3><p>An assembly compiler in C#. It didn't finish, and it taught me more than any tutorial.</p><span class="tag">C#</span><span class="tag">ASM</span></a>
+    <a class="win card repo" data-tilt href="https://github.com/RennexTech/TCP-IP-Illustrated" target="_blank" rel="noopener"><h3>📁 TCP-IP-Illustrated</h3><p>Packet-level notes on TCP/IP, from Ethernet frames up to handshakes.</p><span class="tag">Networking</span></a>
+    <a class="win card repo" data-tilt href="https://github.com/RennexTech/AssemblyLanguage" target="_blank" rel="noopener"><h3>📁 AssemblyLanguage</h3><p>x64 study: registers, calling conventions and stack frames.</p><span class="tag">ASM</span></a>
+    <a class="win card repo" data-tilt href="https://github.com/RennexTech/WinAPI" target="_blank" rel="noopener"><h3>📁 WinAPI</h3><p>Poking at Windows internals: processes, handles and how the OS behaves.</p><span class="tag">Windows</span><span class="tag">C</span></a>
+    <a class="win card repo" data-tilt href="https://github.com/RennexTech/CommandLine-Scripting" target="_blank" rel="noopener"><h3>📁 CommandLine-Scripting</h3><p>Shell, Batch and PowerShell automation.</p><span class="tag">Scripting</span></a>
+    <a class="win card repo" data-tilt href="https://github.com/RennexTech/C-Code" target="_blank" rel="noopener"><h3>📁 C-Code</h3><p>Pointers, memory management and code close to the metal.</p><span class="tag">C</span></a>
+    <a class="win card repo" data-tilt href="https://sites.google.com/view/rennextech/home" target="_blank" rel="noopener"><h3>📚 RennexTech Library</h3><p>My long-form research notes on networking, OS internals and RE. All free.</p><span class="tag">Research</span></a>
+  </div>
+</section>
 
-        <p class="hero-description">
-            Building the future through <span style="border-bottom: 2px solid var(--accent-green);">Deep System Logic</span>.
-            AI engineer, Django Specialist, and Cybersecurity Engineer focused on the foundations of the digital world.
-        </p>
+<section id="play" class="rv">
+  <h2 class="t"># terminal (type <span class="f">help</span>)</h2>
+  <div class="win" data-tilt>
+    <div class="bar"><i class="dot"></i><i class="dot"></i><i class="dot"></i><span class="name">nick@rennextech:~$</span></div>
+    <div class="term" id="term">
+      <div id="out"></div>
+      <div class="row"><span class="f">$</span><input id="in" autocomplete="off" spellcheck="false" aria-label="terminal input"></div>
+    </div>
+  </div>
+</section>
 
-        <div class="typewriter-container">
-            > <span id="typewriter"></span><span class="cursor-blink">_</span>
-        </div>
+<section id="contact" class="rv">
+  <h2 class="t"># contact</h2>
+  <div class="win" data-tilt>
+    <div class="bar"><i class="dot"></i><i class="dot"></i><i class="dot"></i><span class="name">hire_me.py</span></div>
+    <div class="arena" id="arena">
+      <h3 style="font-size:1.3rem">Want to work together?</h3>
+      <p class="d" id="hint">Backend work, automation, or a support engineer role. Try clicking the button.</p>
+      <a class="btn p" id="dodge" href="mailto:rennextech@gmail.com">Email me</a>
+    </div>
+  </div>
+</section>
+</main>
 
-        <div class="hero-buttons">
-            <a href="https://sites.google.com/view/rennextech/home" target="_blank" class="btn">📚 Library</a>
-            <a href="https://github.com/RennexTech" target="_blank" class="btn btn-primary">⌥ GitHub</a>
-            <a href="https://www.rennextech.co.ke" target="_blank" class="btn">🌐 Website</a>
-            <a href="https://data.typeracer.com/pit/profile?user=nixoneen" target="_blank" class="btn">🚄Typing</a>
-            <a href="https://www.linkedin.com/in/nixon-ekirapa-7685542b8/" target="_blank" class="btn">🔗LinkedIn</a>
-            
-        </div>
+<footer>© 2026 RennexTech · Nick · Nairobi · try the Konami code ↑↑↓↓←→←→ B A</footer>
 
-        <div class="scroll-indicator">
-            <span class="label">Scroll</span>
-            <div class="bar"></div>
-        </div>
-    </section>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+(function(){
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+const css=n=>getComputedStyle(document.documentElement).getPropertyValue(n).trim();
 
-    <div class="divider"></div>
+/* ---------- themes ---------- */
+function setTheme(t){
+  const v=t==='dracula'?'':t;
+  document.documentElement.setAttribute('data-t',v);
+  try{localStorage.setItem('theme',t)}catch(e){}
+  if(window.recolor)window.recolor();
+}
+$$('[data-th]').forEach(b=>b.onclick=()=>setTheme(b.dataset.th));
+try{const t=localStorage.getItem('theme');if(t)setTheme(t)}catch(e){}
 
-    <!-- ABOUT SECTION -->
-    <section id="about" class="about">
-        <div class="about-text">
-            <h2>// Discovery_Report</h2>
-            <h3>Beyond the <span class="gradient-text">Interface.</span></h3>
-            <p>
-                Most developers stop at the screen. I go into the kernel. My journey isn't just about building apps, it's about understanding the low level logic and integrate it to solve high level problems.
-            </p>
-            <p>
-                Self-taught from the ground up, I've gone from writing my first Python script to analyzing PE binaries, building Django backends, and compiling Assembly. Every layer of the stack is a puzzle I've chosen to solve from first principles.
-            </p>
-            <div class="terminal-box py-3 rounded-r-lg">
-                <p style="color: var(--accent-green); margin: 0.5rem 0; font-size: 0.85rem;">» 24 Years of Persistence</p>
-                <p style="color: var(--accent-green); margin: 0.5rem 0; font-size: 0.85rem;">» 3000+ Pages of Deep Technical Research</p>
-                <p style="color: var(--accent-green); margin: 0.5rem 0; font-size: 0.85rem;">» From TCP/IP networking to Django WebApps to x64 Assembly</p>
-                <p style="color: var(--accent-green); margin: 0.5rem 0; font-size: 0.85rem;">» I never quit, complexity and challenges keep me going daily</p>
-            </div>
-        </div>
+/* ---------- typed hero code ---------- */
+const lines=[
+ '<span class="k">from</span> life <span class="k">import</span> coffee, curiosity',
+ '',
+ '<span class="k">def</span> <span class="f">build_things</span>(idea):',
+ '    <span class="k">while</span> <span class="n">True</span>:',
+ '        idea = curiosity.dig_deeper(idea)',
+ '        <span class="k">if</span> idea.works(): <span class="k">break</span>',
+ '    <span class="k">return</span> <span class="s">"shipped"</span>'];
+const hc=$('#heroCode');
+let li=0;
+(function addLine(){
+  if(li>=lines.length){hc.lastChild.insertAdjacentHTML('beforeend','<span class="cur">&nbsp;</span>');return}
+  const d=document.createElement('div');d.innerHTML=lines[li++]||'&nbsp;';hc.appendChild(d);setTimeout(addLine,350);
+})();
 
-        <div class="about-stats">
-            <div class="stat-card">
-                <div class="stat-number">1</div>
-                <div class="stat-label">Year Coding</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-number">100%</div>
-                <div class="stat-label">Self Taught</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-number">Active</div>
-                <div class="stat-label">Reverse Engineering Software and Hardware and doing cybersecurity research</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-number">Kenya</div>
-                <div class="stat-label">Location</div>
-            </div>
-        </div>
-    </section>
+/* ---------- scroll reveal ---------- */
+const io=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('in')}}),{threshold:.12});
+$$('.rv').forEach(el=>io.observe(el));
 
-    <div class="divider"></div>
+/* ---------- 3D tilt on windows ---------- */
+$$('[data-tilt]').forEach(el=>{
+  el.addEventListener('mousemove',e=>{
+    const r=el.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;
+    el.style.transform=`perspective(900px) rotateY(${x*6}deg) rotateX(${-y*6}deg) translateY(-3px)`;
+  });
+  el.addEventListener('mouseleave',()=>el.style.transform='');
+});
 
-    <!-- SKILLS SECTION -->
-    <section id="skills" class="skills">
-        <div class="skills-container">
-            <div class="skills-header">
-                <div>
-                    <h2>// Skill_Matrix</h2>
-                    <h3>Technical <span class="gradient-text">Mastery.</span></h3>
-                </div>
-                <p>A multi-layered stack focusing on efficiency, security, and deep architectural understanding.</p>
-            </div>
+/* ---------- three.js background ---------- */
+let mx=0,my=0;
+addEventListener('mousemove',e=>{mx=e.clientX/innerWidth-.5;my=e.clientY/innerHeight-.5});
+if(window.THREE){
+  const cv=$('#gl'),R=new THREE.WebGLRenderer({canvas:cv,alpha:true,antialias:true});
+  const sc=new THREE.Scene(),cam=new THREE.PerspectiveCamera(60,1,.1,100);cam.position.z=7;
+  const mat=new THREE.MeshBasicMaterial({wireframe:true,color:0x50fa7b});
+  const knot=new THREE.Mesh(new THREE.TorusKnotGeometry(1.8,.5,120,16),mat);knot.position.x=3;
+  const ico=new THREE.Mesh(new THREE.IcosahedronGeometry(1,1),new THREE.MeshBasicMaterial({wireframe:true,color:0xbd93f9}));ico.position.set(-4,-2,-2);
+  const pg=new THREE.BufferGeometry(),N=500,pa=new Float32Array(N*3);
+  for(let i=0;i<N*3;i++)pa[i]=(Math.random()-.5)*30;
+  pg.setAttribute('position',new THREE.BufferAttribute(pa,3));
+  const pm=new THREE.PointsMaterial({size:.05,color:0x8be9fd});const pts=new THREE.Points(pg,pm);
+  sc.add(knot,ico,pts);
+  window.recolor=()=>{mat.color.set(css('--f'));ico.material.color.set(css('--n'));pm.color.set(css('--c'))};
+  window.recolor();
+  function rs(){R.setSize(innerWidth,innerHeight);R.setPixelRatio(Math.min(devicePixelRatio,2));cam.aspect=innerWidth/innerHeight;cam.updateProjectionMatrix()}
+  addEventListener('resize',rs);rs();
+  (function loop(){
+    knot.rotation.x+=.004;knot.rotation.y+=.006;ico.rotation.x-=.005;ico.rotation.y+=.004;
+    pts.rotation.y+=.0008;
+    const sy=scrollY/innerHeight;knot.position.y=sy*1.5;ico.position.y=-2+sy;
+    cam.position.x+=(mx*2-cam.position.x)*.05;cam.position.y+=(-my*2-cam.position.y)*.05;cam.lookAt(0,0,0);
+    R.render(sc,cam);requestAnimationFrame(loop);
+  })();
+}
 
-            <div class="skills-grid">
-                <div class="skill-card">
-                    <div class="skill-icon">🔧</div>
-                    <h4>Web Systems (Django)</h4>
-                    <p>Building bulletproof backends. I specialize in Django ecosystems, PostgreSQL optimization, and crafting APIs that don't break under pressure.</p>
-                    <ul class="skill-list">
-                        <li>[+] REST_FRAMEWORK</li>
-                        <li>[+] AUTH_SYSTEMS</li>
-                        <li>[+] ASYNC_TASKS</li>
-                        <li>[+] IOT_INTEGRATION</li>
-                    </ul>
-                </div>
+/* ---------- click burst ---------- */
+const bits=['{ }','def','0x90','mov','&lt;/&gt;','int','jmp','()','#!','rax'];
+addEventListener('click',e=>{
+  for(let i=0;i<8;i++){
+    const p=document.createElement('span');p.className='p-bit';p.innerHTML=bits[Math.random()*bits.length|0];
+    p.style.cssText+=`left:${e.clientX}px;top:${e.clientY}px;color:var(${['--k','--f','--n','--c','--o'][i%5]});font-size:${11+Math.random()*8}px`;
+    document.body.appendChild(p);
+    requestAnimationFrame(()=>{const a=Math.random()*6.28,d=40+Math.random()*80;p.style.transform=`translate(${Math.cos(a)*d}px,${Math.sin(a)*d}px) rotate(${Math.random()*180}deg)`;p.style.opacity=0});
+    setTimeout(()=>p.remove(),900);
+  }
+});
 
-                <div class="skill-card">
-                    <div class="skill-icon">🛡️</div>
-                    <h4>Low-Level Security</h4>
-                    <p>Reverse Engineering is where I thrive. Analyzing binaries, understanding x86 Assembly, and exploring how malware persists in the system.</p>
-                    <ul class="skill-list">
-                        <li>[+] X64_ASSEMBLY</li>
-                        <li>[+] PE_FORMAT_ANALYSIS</li>
-                        <li>[+] DEBUGGING_WINAPI</li>
-                        <li>[+] C_PROGRAMMING</li>
-                    </ul>
-                </div>
+/* ---------- the button that runs away ---------- */
+const dodge=$('#dodge'),arena=$('#arena'),hint=$('#hint');let esc=0,caught=false;
+const msgs=['Nope!','Too slow 😎','Almost!','Try again','Okay, okay...'];
+function flee(e){
+  if(caught||matchMedia('(pointer:coarse)').matches)return;
+  const b=dodge.getBoundingClientRect(),dx=e.clientX-(b.left+b.width/2),dy=e.clientY-(b.top+b.height/2);
+  if(Math.hypot(dx,dy)<110){
+    const a=arena.getBoundingClientRect();
+    dodge.style.left=(15+Math.random()*70)+'%';dodge.style.top=(35+Math.random()*50)+'%';
+    esc++;dodge.textContent=msgs[Math.min(esc-1,msgs.length-1)];
+    if(esc>=6){caught=true;dodge.textContent='Fine, you win. Email me 📧';hint.textContent='Persistence noted. That is a good trait in an engineer.';dodge.style.left='50%';dodge.style.top='65%'}
+  }
+}
+arena.addEventListener('mousemove',flee);
 
-                <div class="skill-card">
-                    <div class="skill-icon">🧠</div>
-                    <h4>AI & Logic of how AI Models are built</h4>
-                    <p>Integrating intelligence into applications. From local LLM deployment to building custom agents that solve real-world problems. I intergrate local offline AI into your web and native applications</p>
-                    <ul class="skill-list">
-                        <li>[+] TRANSFORMER_LOGIC</li>
-                        <li>[+] PROMPT_ENGINEERING</li>
-                        <li>[+] VECTOR_DATABASES</li>
-                        <li>[+] LOCAL_LLM_DEPLOY</li>
-                    </ul>
-                </div>
-            </div>
+/* ---------- terminal ---------- */
+const out=$('#out'),inp=$('#in'),hist=[];let hi=0;
+const say=(t,c)=>{const p=document.createElement('p');p.innerHTML=t;if(c)p.className=c;out.appendChild(p);$('#term').scrollTop=1e5};
+const cmds={
+ help:()=>'commands: <span class="f">about, skills, projects, links, whoami, theme &lt;dracula|monokai|tokyo|light&gt;, matrix, sudo hire nick, clear</span>',
+ about:()=>'Nick, 24, Nairobi. Self-taught. Python/Django first, reverse engineering for fun.',
+ whoami:()=>'a human who reads documentation for fun',
+ skills:()=>'<span class="f">python django html css js</span> | <span class="k">winapi c asm</span> | <span class="c">ollama tts linux networking</span>',
+ projects:()=>'CyberIOT, ASMBolt, TCP-IP-Illustrated, AssemblyLanguage, WinAPI, CommandLine-Scripting, C-Code',
+ links:()=>'github.com/RennexTech | rennextech.co.ke | rennextech@gmail.com',
+ ls:()=>'about.py  stack/  projects/  hire_me.py',
+ matrix:()=>{rain();return 'wake up, Neo...'},
+ clear:()=>{out.innerHTML='';return ''},
+ 'sudo hire nick':()=>{location.hash='#contact';return '[sudo] permission granted. Taking you to the contact form...'},
+ sudo:()=>'nice try. Use "sudo hire nick" instead 😉'
+};
+say('Welcome. Type <span class="f">help</span> to see what this thing can do.');
+inp.addEventListener('keydown',e=>{
+  if(e.key==='Enter'){
+    const v=inp.value.trim();inp.value='';if(!v)return;hist.push(v);hi=hist.length;
+    say('<span class="f">$</span> '+v.replace(/</g,'&lt;'));
+    const l=v.toLowerCase();
+    if(l.startsWith('theme ')){const t=l.split(' ')[1];if(['dracula','monokai','tokyo','light'].includes(t)){setTheme(t);say('theme set to '+t)}else say('unknown theme','d');return}
+    const f=cmds[l];say(f?f():'command not found: '+v.replace(/</g,'&lt;')+' (try help)',f?'':'d');
+  }else if(e.key==='ArrowUp'&&hi>0){inp.value=hist[--hi]}
+  else if(e.key==='ArrowDown'){inp.value=hist[++hi]||'';}
+});
+$('#term').addEventListener('click',()=>inp.focus());
 
-            <div class="proficiency">
-                <h4>// Proficiency_Levels</h4>
-                <div class="proficiency-item">
-                    <div class="proficiency-header">
-                        <span>Python / Django</span>
-                        <span>90%</span>
-                    </div>
-                    <div class="proficiency-bar">
-                        <div class="proficiency-fill" style="--percent: 90" data-width="90"></div>
-                    </div>
-                </div>
-                <div class="proficiency-item">
-                    <div class="proficiency-header">
-                        <span>x64 Assembly / RE</span>
-                        <span>75%</span>
-                    </div>
-                    <div class="proficiency-bar">
-                        <div class="proficiency-fill" style="--percent: 75" data-width="75"></div>
-                    </div>
-                </div>
-                <div class="proficiency-item">
-                    <div class="proficiency-header">
-                        <span>C / Systems Programming</span>
-                        <span>70%</span>
-                    </div>
-                    <div class="proficiency-bar">
-                        <div class="proficiency-fill" style="--percent: 70" data-width="70"></div>
-                    </div>
-                </div>
-                <div class="proficiency-item">
-                    <div class="proficiency-header">
-                        <span>AI / ML Integration</span>
-                        <span>80%</span>
-                    </div>
-                    <div class="proficiency-bar">
-                        <div class="proficiency-fill" style="--percent: 80" data-width="80"></div>
-                    </div>
-                </div>
-                <div class="proficiency-item">
-                    <div class="proficiency-header">
-                        <span>WinAPI / Cybersecurity</span>
-                        <span>72%</span>
-                    </div>
-                    <div class="proficiency-bar">
-                        <div class="proficiency-fill" style="--percent: 72" data-width="72"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <div class="divider"></div>
-
-    <!-- PROJECTS SECTION -->
-    <section class="projects">
-        <div class="projects-header">
-            <h2>// Proof_of_Work</h2>
-            <h3>Active <span style="color: white;">Forge.</span></h3>
-        </div>
-
-        <div class="projects-grid">
-            <a href="https://github.com/RennexTech/CyberIOT" target="_blank" class="project-card">
-                <div class="project-tag">DJANGO · IOT</div>
-                <h4 class="project-title">CyberIOT</h4>
-                <p class="project-description">A Django-powered IoT platform bridging the physical and digital — sensor data pipelines, dashboards, and real-time device management.</p>
-                <span class="project-link">VIEW_REPO →</span>
-            </a>
-
-            <a href="https://github.com/RennexTech/ASMBolt/" target="_blank" class="project-card">
-                <div class="project-tag">C# · ASSEMBLY LANGUAGE COMPILER</div>
-                <h4 class="project-title">ASMBolt</h4>
-                <p class="project-description">An Assembly-language compiler written in C# — an ambitious attempt at building a toolchain from scratch. A "failed" project that taught everything.</p>
-                <span class="project-link">VIEW_REPO →</span>
-            </a>
-
-            <a href="https://sites.google.com/view/rennextech/home" target="_blank" class="project-card">
-                <div class="project-tag">DEEP RESEARCH</div>
-                <h4 class="project-title">RennexTech Library</h4>
-                <p class="project-description">3000+ pages of documented research covering TCP/IP at the packet level, OS internals, networking fundamentals, and reverse engineering notes.</p>
-                <span class="project-link">VISIT_LIBRARY →</span>
-            </a>
-        </div>
-    </section>
-
-    <div class="divider"></div>
-
-    <!-- REPOS SECTION -->
-    <section id="repos" class="repos">
-        <div class="repos-container">
-            <div class="repos-header">
-                <h2>// Repository_Index</h2>
-                <h3>Open <span class="gradient-text">Source.</span></h3>
-                <p>A selection of research repositories — each one a deep dive into a system layer.</p>
-            </div>
-
-            <div class="repo-grid">
-                <a href="https://github.com/RennexTech/TCP-IP-Illustrated" target="_blank" class="repo-card">
-                    <div class="repo-icon">📡</div>
-                    <div class="repo-category">NETWORKING</div>
-                    <h4>TCP-IP-Illustrated</h4>
-                    <p>Packet-level analysis of TCP/IP. The full stack, documented from Ethernet frames to application layer handshakes.</p>
-                </a>
-
-                <a href="https://github.com/RennexTech/AssemblyLanguage" target="_blank" class="repo-card">
-                    <div class="repo-icon">⚙️</div>
-                    <div class="repo-category">LOW-LEVEL</div>
-                    <h4>AssemblyLanguage</h4>
-                    <p>x64 Assembly study — registers, calling conventions, stack frames, and the raw logic beneath every high-level program.</p>
-                </a>
-
-                <a href="https://github.com/RennexTech/WinAPI" target="_blank" class="repo-card">
-                    <div class="repo-icon">🪟</div>
-                    <div class="repo-category">WINDOWS</div>
-                    <h4>WinAPI</h4>
-                    <p>Reverse engineering Windows internals — process injection, handle manipulation, and how the OS kernel actually works.</p>
-                </a>
-
-                <a href="https://github.com/RennexTech/CommandLine-Scripting" target="_blank" class="repo-card">
-                    <div class="repo-icon">💻</div>
-                    <div class="repo-category">SCRIPTING</div>
-                    <h4>CommandLine-Scripting</h4>
-                    <p>Shell, Batch, and PowerShell automation — because the terminal is where real work happens.</p>
-                </a>
-
-                <a href="https://github.com/RennexTech/C-Code" target="_blank" class="repo-card">
-                    <div class="repo-icon">🔩</div>
-                    <div class="repo-category">SYSTEMS</div>
-                    <h4>C-Code</h4>
-                    <p>C programming for systems work — pointers, memory management, and writing code that runs close to the metal.</p>
-                </a>
-
-                <a href="https://github.com/RennexTech/ASMBolt/tree/main" target="_blank" class="repo-card">
-                    <div class="repo-icon">⚡</div>
-                    <div class="repo-category">COMPILER</div>
-                    <h4>ASMBolt <span style="font-size: 0.75rem; color: #666;">(WIP)</span></h4>
-                    <p>An Assembly compiler in C#. An ambitious build that failed gloriously — and taught more than any tutorial ever could.</p>
-                </a>
-            </div>
-
-            <div class="repos-button">
-                <a href="https://github.com/RennexTech" target="_blank">→ View All Repositories</a>
-            </div>
-        </div>
-    </section>
-
-    <div class="divider"></div>
-
-    <!-- TIMELINE SECTION -->
-    <section class="timeline">
-        <div class="timeline-header">
-            <h2>// Journey_Log</h2>
-            <h3>The <span class="gradient-text">Path.</span></h3>
-        </div>
-
-        <ul class="timeline-list">
-            <li class="timeline-item">
-                <div class="timeline-year">2019</div>
-                <h4 class="timeline-title">First Line of Code</h4>
-                <p class="timeline-description">Started with Python. Wrote a calculator. Got addicted to the logic.</p>
-            </li>
-            <li class="timeline-item">
-                <div class="timeline-year">2020–2021</div>
-                <h4 class="timeline-title">Web Development Deep Dive</h4>
-                <p class="timeline-description">Built Django backends, REST APIs, PostgreSQL, MYSQL and sqlite integrations. Started the RennexTech brand.</p>
-            </li>
-            <li class="timeline-item">
-                <div class="timeline-year">2022</div>
-                <h4 class="timeline-title">Going Low-Level</h4>
-                <p class="timeline-description">Discovered Assembly, C, and Reverse Engineering. Started reading TCP/IP Illustrated. The rabbit hole deepened.</p>
-            </li>
-            <li class="timeline-item">
-                <div class="timeline-year">2023</div>
-                <h4 class="timeline-title">Security Research & WinAPI</h4>
-                <p class="timeline-description">Deep dive into Windows internals, PE format, malware analysis techniques, and building CyberIOT. Am currently doing personal documentation on my YouTube.</p>
-            </li>
-            <li class="timeline-item">
-                <div class="timeline-year">2024–Present</div>
-                <h4 class="timeline-title">AI Integration + Compiler Engineering and some Reverse Engineering career documentation</h4>
-                <p class="timeline-description">Building AI-powered applications, attempting a C# Assembly compiler (ASMBolt), and documenting everything in the RennexTech Library.</p>
-            </li>
-        </ul>
-    </section>
-
-    <div class="divider"></div>
-
-    <!-- CONTACT SECTION -->
-    <section id="contact" class="contact">
-        <div class="contact-container">
-            <h2>Ready to <span class="gradient-text">Collaborate?</span></h2>
-            <p>Cybersecurity, Building a backend system, or AI integration with python and similar tools — email me. </p>
-
-            <div class="contact-email">
-                <a href="mailto:rennextech@gmail.com">rennextech@gmail.com↗</a>
-            </div>
-
-            <div class="contact-links">
-                <a href="https://github.com/RennexTech" target="_blank" class="contact-link">GitHub</a>
-                <a href="https://sites.google.com/view/rennextech/home" target="_blank" class="contact-link">Library</a>
-                <a href="https://www.rennextech.co.ke" target="_blank" class="contact-link">Website</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- FOOTER -->
-    <footer>
-        © 2026 RENNEXTECH // Nick The Chief // NAIROBI, KENYA // DATA_DRIVEN_EXCELLENCE
-    </footer>
-
-    <!-- JAVASCRIPT -->
-    <script>
-        /* ═══════════════════════════════════════════════════════════
-           CUSTOM CURSOR
-           ═══════════════════════════════════════════════════════════ */
-
-        const cursor = document.getElementById('cursor');
-        const cursorRing = document.getElementById('cursor-ring');
-        let mouseX = 0, mouseY = 0;
-        let ringX = 0, ringY = 0;
-
-        document.addEventListener('mousemove', (e) => {
-            mouseX = e.clientX;
-            mouseY = e.clientY;
-            cursor.style.left = (mouseX - 5) + 'px';
-            cursor.style.top = (mouseY - 5) + 'px';
-        });
-
-        function animateRing() {
-            ringX += (mouseX - ringX - 16) * 0.15;
-            ringY += (mouseY - ringY - 16) * 0.15;
-            cursorRing.style.left = ringX + 'px';
-            cursorRing.style.top = ringY + 'px';
-            requestAnimationFrame(animateRing);
-        }
-        animateRing();
-
-        /* ═══════════════════════════════════════════════════════════
-           TYPEWRITER EFFECT
-           ═══════════════════════════════════════════════════════════ */
-
-        const phrases = [
-            'Building backends that scale...',
-            'Reverse engineering software and hardware...',
-            'Networking with TCP protocol and integrating it into malware analysis...',
-            'Writing Assembly, slowly...and documenting/everything is free and open source...',
-            'AI model integration local offline personal...'
-        ];
-
-        let phraseIndex = 0;
-        let charIndex = 0;
-        let isDeleting = false;
-        const typewriterEl = document.getElementById('typewriter');
-
-        function typewriter() {
-            const phrase = phrases[phraseIndex];
-
-            if (!isDeleting) {
-                typewriterEl.textContent = phrase.slice(0, ++charIndex);
-                if (charIndex === phrase.length) {
-                    isDeleting = true;
-                    setTimeout(typewriter, 1800);
-                    return;
-                }
-            } else {
-                typewriterEl.textContent = phrase.slice(0, --charIndex);
-                if (charIndex === 0) {
-                    isDeleting = false;
-                    phraseIndex = (phraseIndex + 1) % phrases.length;
-                }
-            }
-
-            setTimeout(typewriter, isDeleting ? 40 : 75);
-        }
-        typewriter();
-
-        /* ═══════════════════════════════════════════════════════════
-           SKILL BARS ANIMATION ON SCROLL
-           ═══════════════════════════════════════════════════════════ */
-
-        const skillBars = document.querySelectorAll('.proficiency-fill');
-
-        const skillObserver = new IntersectionObserver((entries) => {
-            entries.forEach((entry) => {
-                if (entry.isIntersecting) {
-                    entry.target.style.width = entry.target.dataset.width + '%';
-                }
-            });
-        }, { threshold: 0.3 });
-
-        skillBars.forEach((bar) => {
-            skillObserver.observe(bar);
-        });
-
-        /* ═══════════════════════════════════════════════════════════
-           SMOOTH SCROLL LINKS
-           ═══════════════════════════════════════════════════════════ */
-
-        document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth' });
-                }
-            });
-        });
-
-        /* ═══════════════════════════════════════════════════════════
-           EASTER EGG
-           ═══════════════════════════════════════════════════════════ */
-
-        console.log('%cSystem Initialized: Hello Nick.', 'color: #00ff41; font-weight: bold; font-size: 20px;');
-        console.log('%cThe CyberSecurity Engineer is always active. Am waiting for your email...', 'color: #666;');
-    </script>
+/* ---------- matrix rain (Konami or terminal) ---------- */
+const rc=$('#rain'),rx=rc.getContext('2d');let rt;
+function rain(){
+  rc.width=innerWidth;rc.height=innerHeight;rc.style.display='block';
+  const cols=Math.floor(innerWidth/16),y=Array(cols).fill(0);clearInterval(rt);
+  const end=Date.now()+6000;
+  rt=setInterval(()=>{
+    rx.fillStyle='rgba(0,0,0,.08)';rx.fillRect(0,0,rc.width,rc.height);rx.fillStyle=css('--f');rx.font='14px monospace';
+    y.forEach((v,i)=>{rx.fillText(String.fromCharCode(0x30A0+Math.random()*96),i*16,v*16);y[i]=v*16>rc.height&&Math.random()>.97?0:v+1});
+    if(Date.now()>end){clearInterval(rt);rc.style.display='none'}
+  },45);
+}
+const kon=[38,38,40,40,37,39,37,39,66,65];let ki=0;
+addEventListener('keydown',e=>{if(e.target===inp)return;ki=e.keyCode===kon[ki]?ki+1:0;if(ki===kon.length){ki=0;rain()}});
+})();
+</script>
 </body>
 </html>
